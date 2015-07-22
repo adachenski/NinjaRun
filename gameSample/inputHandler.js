@@ -10,7 +10,7 @@ var InputHandler = (function inputHandler() {
 
     inputHandler.handleKeyboardInput = function()
     {
-        //inputHandler.moves = [];
+        inputHandler.moves = [];
 
         document.onkeydown = function (e) {
 

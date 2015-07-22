@@ -7,4 +7,6 @@
 (function run()
 {
     var SM = Object.create(ScreenManager).init().update();
+    var ihEngine = Object.create(InputHandlerEngine).init();
+    ihEngine.handleKeyboardInput();
 })();

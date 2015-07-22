@@ -7,7 +7,7 @@ var GameScreen = (function(parent)
 {
     var GameScreen = {},
         player,
-        inputHandler;
+        IHEngine;
 
     GameScreen.loadGraphics = function()
     {
@@ -19,14 +19,15 @@ var GameScreen = (function(parent)
         parent.init.call(this, w, h);
 
         player = Object.create(Player).init(100, 100, 50, 50);
-        inputHandler = Object.create(InputHandler).init();
+        IHEngine = Object.create(InputHandlerEngine).init();
 
         return this;
     };
 
     GameScreen.update = function()
     {
-        var moves = inputHandler.handleKeyboardInput();
+        var moves = IHEngine.handleKeyboardInput();
+        
         player.update(moves);
 
         parent.update.call(this);
