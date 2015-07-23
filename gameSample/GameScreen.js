@@ -7,28 +7,30 @@ var GameScreen = (function(parent)
 {
     var GameScreen = {},
         player,
-        IHEngine;
+        inputHandler,
+        renderE = Object.create(RenderEngine).init("sprites/Tweety.png", 100, 100);
 
     GameScreen.loadGraphics = function()
     {
         //console.log('loading graphics of the GameScreen');
     };
 
-    GameScreen.init = function(w, h)
+    GameScreen.init = function()
     {
-        parent.init.call(this, w, h);
+        parent.init.call(this);
 
         player = Object.create(Player).init(100, 100, 50, 50);
-        IHEngine = Object.create(InputHandlerEngine).init();
+        inputHandler = Object.create(InputHandler).init();
 
         return this;
     };
 
     GameScreen.update = function()
     {
-        var moves = IHEngine.handleKeyboardInput();
-        
+        var moves = inputHandler.handleKeyboardInput();
         player.update(moves);
+        renderE.animate();
+        renderE.render();
 
         parent.update.call(this);
     };

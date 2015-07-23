@@ -26,8 +26,11 @@ var ScreenManager = (function () {
 
     ScreenManager.init = function () {
         currentScreen = GameScreen;
-        currentScreen.init(this.w, this.h);
-        currentScreen.loadGraphics();
+        console.log(GameScreen);
+
+        currentScreen.init();
+
+        //currentScreen.loadGraphics();
 
         setGetCanvas();
         return this;
@@ -49,7 +52,8 @@ var ScreenManager = (function () {
     };
 
     ScreenManager.render = function (ctx) {
-        clearCanvas(ctx);
+        //clearCanvas(ctx);
+        //renderer.render(stage);
 
         currentScreen.render(ctx);
     };
