@@ -8,7 +8,7 @@ var GameScreen = (function(parent)
     var GameScreen = {},
         player,
         inputHandler,
-        renderE = Object.create(RenderEngine).init("sprites/Tweety.png", 100, 100);
+        renderE = Object.create(RenderEngine).init("SpriteSheets/Tweety.png", 100, 100);
 
     GameScreen.loadGraphics = function()
     {

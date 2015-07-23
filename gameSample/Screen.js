@@ -6,7 +6,7 @@
 var Screen = (function () {
     var Screen = {};
 
-    Screen.init = function(w, h)
+    Screen.init = function()
     {
         return this;
     };
