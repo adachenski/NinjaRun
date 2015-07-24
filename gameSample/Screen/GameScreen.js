@@ -23,7 +23,7 @@ var GameScreen = (function(parent)
         parent.init.call(this);
 
         player = Object.create(Player).init(100, 100, 50, 50);
-        inputHandler = Object.create(InputHandler).init();
+        //inputHandler = Object.create(InputHandler).init();
 
         createSprites();
         createLayers();
@@ -32,11 +32,10 @@ var GameScreen = (function(parent)
 
     GameScreen.update = function()
     {
-        var moves = inputHandler.handleKeyboardInput();
-        player.update(moves);
+        //var moves = inputHandler.handleKeyboardInput();
+        player.update();
         renderE.render(this);
 
-        //console.log(this.layers);
 
         var layerToUpdate = this.layers["playerLayer"];
         renderE.animate(player.x, player.y, layerToUpdate);
