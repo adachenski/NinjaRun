@@ -7,11 +7,13 @@ var GameScreen = (function(parent)
 {
     var GameScreen = {},
         player,
-        inputHandle,
+        inputHandler,
+        renderer,
         tweetySprite,
-        tweetySprite2;
+        tweetySprite2,
+        monsterSprite,
+        playerMoves = [];
 
-    renderE = Object.create(RenderEngine).init();
 
     GameScreen.loadGraphics = function()
     {
@@ -22,50 +24,64 @@ var GameScreen = (function(parent)
     {
         parent.init.call(this);
 
+        inputHandler = Object.create(InputHandlerEngine).init();
+        renderer = Object.create(RenderEngine).init();
         player = Object.create(Player).init(100, 100, 50, 50);
-        inputHandler = Object.create(InputHandler).init();
+        playerMoves = inputHandler.handleKeyboardInput();
 
         createSprites();
         createLayers();
+
+        startSpriteAnims();
+
         return this;
     };
 
     GameScreen.update = function()
     {
-        var moves = inputHandler.handleKeyboardInput();
-        player.update(moves);
-        renderE.render(this);
+        playerMoves = inputHandler.handleKeyboardInput();
+        //console.log(playerMoves)
 
-        //console.log(this.layers);
+        player.update(playerMoves);
 
-        var layerToUpdate = this.layers["playerLayer"];
-        renderE.animate(player.x, player.y, layerToUpdate);
+        renderer.render(this);
+
+        var layerToUpdate = this.layers["monsterLayer"];
+        renderer.animate(player.x, player.y, layerToUpdate);
 
         parent.update.call(this);
     };
 
-    GameScreen.render = function(ctx)
+    //GameScreen.render = function(ctx)
+    //{
+    //    player.render(ctx);
+    //
+    //    for(var key in layers) {
+    //        if(layers.hasOwnProperty(key)) {
+    //
+    //            layers[key].draw();
+    //        }
+    //    }
+    //    parent.render(ctx);
+    //};
+
+    function startSpriteAnims()
     {
-        player.render(ctx);
-
-        for(var key in layers) {
-            if(layers.hasOwnProperty(key)) {
-                layers[key].draw();
-            }
-        }
-        parent.render(ctx);
-    };
-
+        monsterSprite.start();
+    }
 
     function createSprites() {
-        tweetySprite2 = renderE.addSprite("SpriteSheets/Tweety.png", 200, 100, 100, 100);
-        tweetySprite = renderE.addSprite("SpriteSheets/Tweety.png", player.x, player.y, 100, 100);
+        tweetySprite2 = renderer.addSprite("SpriteSheets/Tweety.png", 200, 100, 100, 100);
+        tweetySprite = renderer.addSprite("SpriteSheets/Tweety.png", player.x, player.y, 100, 100);
+
+        monsterSprite = renderer.createBlobSprite("SpriteSheets/monster.png", player.x, player.y);
     }
 
     function createLayers() {
-        renderE.addLayer("playerLayer", GameScreen.stage, [tweetySprite], GameScreen.layers);
-        renderE.addLayer("npcLayer", GameScreen.stage, [tweetySprite2], GameScreen.layers);
+        renderer.addLayer("playerLayer", GameScreen.stage, [tweetySprite], GameScreen.layers);
+        renderer.addLayer("npcLayer", GameScreen.stage, [tweetySprite2], GameScreen.layers);
 
+        renderer.addLayer("monsterLayer", GameScreen.stage, [monsterSprite], GameScreen.layers);
     }
 
 
