@@ -9,8 +9,7 @@ var GameScreen = (function(parent)
         player,
         inputHandler = Object.create(InputHandlerEngine).init(),
         renderer = Object.create(RenderEngine).init(),
-        tweetySprite,
-        tweetySprite2,
+       // maxX = this.stage.getWidth(),
         monsterSprite,
         playerMoves = inputHandler.handleKeyboardInput();
 
@@ -36,15 +35,18 @@ var GameScreen = (function(parent)
 
     GameScreen.update = function()
     {
-        player.update(playerMoves);
-        renderer.render(this);
-
-        var layerToUpdate = this.layers["monsterLayer"];
-        renderer.animate(player.x, player.y, layerToUpdate);
+        var layerToUpdate = this.layers["monsterLayer"],
+            maximalX = this.stage.getWidth(),
+            minimalX = 0,
+            maximalY = this.stage.getHeight(),
+            minimalY = 0;
+            
+        player.update(playerMoves, maximalX, minimalX, maximalY, minimalY);
         console.log(playerMoves);
+        renderer.render(this);
+        renderer.animate(player.x, player.y, layerToUpdate);
         
         parent.update.call(this);
-        
         playerMoves = inputHandler.handleKeyboardInput();
     };
 

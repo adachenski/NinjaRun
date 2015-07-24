@@ -12,16 +12,15 @@ var Player = (function (parent) {
         return this;
     };
 
-    Player.update = function (moves) {
+    Player.update = function (moves, maximalX, minimalX, maximalY, minimalY) {
         var velocityX = 5,
             velocityY = 30,
             currentX = Player.x,
-            currentY = Player.y,
+            currentY = Player.y
             maxJump = 30;
             
         function animateLeft() {
             Player.x -= velocityX;
-            
         }
         function animateUp() {
             Player.y -= velocityY;
@@ -33,23 +32,27 @@ var Player = (function (parent) {
         }
         function animateRight() {
             Player.x += velocityX;
-
-            requestAnimationFrame(animateRight);
+            while(Player.x < currentX + velocityX) {
+                requestAnimationFrame(animateRight);
+            }
         }
         function animateDown() {
             Player.y += velocityY;
         }
-        moves.forEach(function (move) {
-            if (move === 'left') {
-                animateLeft();
-            } else if (move === 'up') {
-                animateUp();
-            } else if (move === 'right') {
-                animateRight();
-            } else if (move == 'down') {
-                animateRight();
-            }
-        });
+        
+        if((Player.x <= minimalX || (Player.x >= maximalX)) || ((Player.y <= minimalY) || Player.y >= maximalY)) {
+            
+        } else {
+            moves.forEach(function (move) {
+                if (move === 'left') {
+                    animateLeft();
+                } else if (move === 'up') {
+                    animateUp();
+                } else if (move === 'right') {
+                    animateRight();
+                }
+            });
+        }
     };
 
 
