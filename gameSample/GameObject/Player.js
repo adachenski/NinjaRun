@@ -14,35 +14,29 @@ var Player = (function (parent) {
 
     Player.update = function(moves)
     {
-        this.x += 1;
-    }
-
-    //    moves.forEach(function(currentVal, ind, moves) {
-    //        if(currentVal == 'left')
-    //        {
-    //            console.log('left');
-    //            Player.x -= 1;
-    //        }
-    //        if(currentVal == 'right')
-    //        {
-    //            Player.x += 1;
-    //        }
-    //        if (currentVal == 'down') {
-    //            Player.y += 1;
-    //        }
-    //
-    //    });
-    //};
-
-    Player.render = function(ctx)
-    {
-
-        //ctx.fillRect(Player.x, Player.y, Player.w, Player.h)
-        //ctx.stroke();
-        //
-        //parent.render.call(this,ctx);
+        moves.forEach(function(currentVal, ind, moves) {
+            if(currentVal == 'left')
+            {
+                console.log('left');
+                Player.x -= 1;
+            }
+            if(currentVal == 'right')
+            {
+                Player.x += 1;
+            }
+            if (currentVal == 'down') {
+                Player.y += 1;
+            }
+        });
     };
 
+    //Player.render = function(ctx)
+    //{
+    //    ctx.fillRect(Player.x, Player.y, Player.w, Player.h)
+    //    ctx.stroke();
+    //
+    //    parent.render.call(this,ctx);
+    //};
 
     return Player;
 })(GameObject);

@@ -11,7 +11,8 @@ var GameScreen = (function(parent)
         renderer,
         tweetySprite,
         tweetySprite2,
-        monsterSprite;
+        monsterSprite,
+        playerMoves = [];
 
 
     GameScreen.loadGraphics = function()
@@ -26,7 +27,7 @@ var GameScreen = (function(parent)
         inputHandler = Object.create(InputHandlerEngine).init();
         renderer = Object.create(RenderEngine).init();
         player = Object.create(Player).init(100, 100, 50, 50);
-
+        playerMoves = inputHandler.handleKeyboardInput();
 
         createSprites();
         createLayers();
@@ -38,13 +39,15 @@ var GameScreen = (function(parent)
 
     GameScreen.update = function()
     {
-        var moves = inputHandler.handleKeyboardInput();
-        player.update();
+        playerMoves = inputHandler.handleKeyboardInput();
+        //console.log(playerMoves)
+
+        player.update(playerMoves);
 
         renderer.render(this);
 
-        //var layerToUpdate = this.layers["playerLayer"];
-        //renderer.animate(player.x, player.y, layerToUpdate);
+        var layerToUpdate = this.layers["monsterLayer"];
+        renderer.animate(player.x, player.y, layerToUpdate);
 
         parent.update.call(this);
     };
