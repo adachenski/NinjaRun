@@ -5,12 +5,11 @@
 var RenderEngine = (function () {
     var RenderEngine = {};
 
-    RenderEngine.init = function()
-    {
+    RenderEngine.init = function () {
         return this;
     };
 
-    RenderEngine.addSprite = function(path, x, y, w, h)
+    RenderEngine.addSprite = function (path, x, y, w, h)
     {
         var imgObj = new Image(),
             sprite;
@@ -27,8 +26,47 @@ var RenderEngine = (function () {
         return sprite;
     };
 
-    RenderEngine.addLayer = function(key, stage, spritesObjArr, layers){
-        console.log(stage);
+    RenderEngine.createAnimatoins = function()
+    {
+        var animations = {};
+
+
+
+        return animations;
+    };
+
+    //RenderEngine.addAnimation(animName, frames, startX, startY, w, h)
+    //{
+    //    var anim = {};// = {'moveLeft': [{x: ,y: , w: , h: }]};
+    //
+    //    for (var i = 0; i < frames; i++) {
+    //        anim[animName][i] = {x: ((startX + w)*i) , y: startY, width: w, height: h}
+    //    }
+    //
+    //    return anim;
+    //};
+
+
+    RenderEngine.createBlobSprite = function (path, x, y)
+    {
+        var imgObj = new Image(),
+            blob;
+        imgObj.src = path;
+
+        blob = new Kinetic.Sprite({
+            x: x,
+            y: y,
+            image: imgObj,
+            animation: 'idle',
+            animations: GameAnimObjs.playerAnims,
+            frameRate: 7,
+            index: 0
+        });
+        return blob;
+    };
+
+    RenderEngine.addLayer = function(key, stage, spritesObjArr, layers)
+    {
         var layer = new Kinetic.Layer();
 
         for(var itemInd in spritesObjArr) {
@@ -40,7 +78,7 @@ var RenderEngine = (function () {
         return layers;
     };
 
-    RenderEngine.addAnimation = function(frames, startX, startY, w, h)
+    RenderEngine.addAnimation = function()
     {
 
     };
@@ -54,8 +92,8 @@ var RenderEngine = (function () {
 
     RenderEngine.render = function(screen)
     {
-        screen.stage.draw();
 
+        screen.stage.draw();
     };
 
     return RenderEngine;
