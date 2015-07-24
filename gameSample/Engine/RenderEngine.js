@@ -85,7 +85,7 @@ var RenderEngine = (function () {
 
     RenderEngine.animate = function(x, y, layerToUpdate)
     {
-        var t = layerToUpdate.find('Image');
+        var t = layerToUpdate.find('Sprite');
         if(t == 'undefined') layerToUpdate.find('Sprite');
         t.setX(x);
         t.setY(y);

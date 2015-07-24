@@ -7,12 +7,12 @@ var GameScreen = (function(parent)
 {
     var GameScreen = {},
         player,
-        inputHandler,
-        renderer,
+        inputHandler = Object.create(InputHandlerEngine).init(),
+        renderer = Object.create(RenderEngine).init(),
         tweetySprite,
         tweetySprite2,
         monsterSprite,
-        playerMoves = [];
+        playerMoves = inputHandler.handleKeyboardInput();
 
 
     GameScreen.loadGraphics = function()
@@ -24,11 +24,8 @@ var GameScreen = (function(parent)
     {
         parent.init.call(this);
 
-        inputHandler = Object.create(InputHandlerEngine).init();
-        renderer = Object.create(RenderEngine).init();
         player = Object.create(Player).init(100, 100, 50, 50);
-        playerMoves = inputHandler.handleKeyboardInput();
-
+        
         createSprites();
         createLayers();
 
@@ -39,17 +36,16 @@ var GameScreen = (function(parent)
 
     GameScreen.update = function()
     {
-        playerMoves = inputHandler.handleKeyboardInput();
-        //console.log(playerMoves)
-
         player.update(playerMoves);
-
         renderer.render(this);
 
         var layerToUpdate = this.layers["monsterLayer"];
         renderer.animate(player.x, player.y, layerToUpdate);
-
+        console.log(playerMoves);
+        
         parent.update.call(this);
+        
+        playerMoves = inputHandler.handleKeyboardInput();
     };
 
     //GameScreen.render = function(ctx)
@@ -71,16 +67,10 @@ var GameScreen = (function(parent)
     }
 
     function createSprites() {
-        tweetySprite2 = renderer.addSprite("SpriteSheets/Tweety.png", 200, 100, 100, 100);
-        tweetySprite = renderer.addSprite("SpriteSheets/Tweety.png", player.x, player.y, 100, 100);
-
         monsterSprite = renderer.createBlobSprite("SpriteSheets/monster.png", player.x, player.y);
     }
 
     function createLayers() {
-        renderer.addLayer("playerLayer", GameScreen.stage, [tweetySprite], GameScreen.layers);
-        renderer.addLayer("npcLayer", GameScreen.stage, [tweetySprite2], GameScreen.layers);
-
         renderer.addLayer("monsterLayer", GameScreen.stage, [monsterSprite], GameScreen.layers);
     }
 
