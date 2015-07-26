@@ -63,7 +63,7 @@ var GameScreen = (function(parent)
     }
 
     function createSprites() {
-        monsterSprite = renderer.createBlobSprite("SpriteSheets/monster.png", player.x, player.y);
+        monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", player.x, player.y);
     }
 
     function createLayers() {

@@ -59,7 +59,7 @@ var RenderEngine = (function () {
             image: imgObj,
             animation: 'idle',
             animations: GameAnimObjs.playerAnims,
-            frameRate: 7,
+            frameRate: 11,
             index: 0
         });
         return blob;
