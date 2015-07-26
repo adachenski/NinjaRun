@@ -14,7 +14,8 @@ var InputHandlerEngine = (function InputHandlerEngine(){
 					moves.push('up');
 				} else if (e.keyCode === 39) {
 					moves.push('right');
-				} 
+				}
+				if(e.keyCode == 40) moves.push('down');
 			});
 			//console.log(moves)
 			return moves;

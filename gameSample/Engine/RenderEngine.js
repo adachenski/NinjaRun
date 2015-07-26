@@ -20,7 +20,8 @@ var RenderEngine = (function () {
             y: y,
             image: imgObj,
             width: w,
-            height: h
+            height: h,
+            draggable: true
         });
 
         return sprite;

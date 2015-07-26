@@ -51,6 +51,9 @@ var Player = (function (parent) {
                 } else if (move === 'right') {
                     animateRight();
                 }
+                if(move == 'down') {
+                    Player.y += velocityY;
+                }
             });
         }
     };
