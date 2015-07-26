@@ -6,18 +6,6 @@ var InputHandlerEngine = (function InputHandlerEngine(){
 		},
 		handleKeyboardInput: function()
 		{
-			var moves = [];
-			window.addEventListener('keydown', function(e){
-				if(e.keyCode === 37) {
-					moves.push('left');
-				} else if (e.keyCode === 38) {
-					moves.push('up');
-				} else if (e.keyCode === 39) {
-					moves.push('right');
-				} 
-			});
-			//console.log(moves)
-			return moves;
 		},
 		handleMouseInput: function()
 		{
