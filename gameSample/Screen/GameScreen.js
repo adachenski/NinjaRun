@@ -6,12 +6,10 @@
 var GameScreen = (function(parent)
 {
     var GameScreen = {},
-        player,
+        player = Object.create(Player).init(100, 100, 50, 50),
         inputHandler = Object.create(InputHandlerEngine).init(),
         renderer = Object.create(RenderEngine).init(),
-       // maxX = this.stage.getWidth(),
-        monsterSprite,
-        playerMoves = inputHandler.handleKeyboardInput();
+        monsterSprite;
 
 
     GameScreen.loadGraphics = function()
@@ -22,8 +20,6 @@ var GameScreen = (function(parent)
     GameScreen.init = function()
     {
         parent.init.call(this);
-
-        player = Object.create(Player).init(100, 100, 50, 50);
         
         createSprites();
         createLayers();
@@ -40,14 +36,12 @@ var GameScreen = (function(parent)
             minimalX = 0,
             maximalY = this.stage.getHeight(),
             minimalY = 0;
-            
-        player.update(playerMoves, maximalX, minimalX, maximalY, minimalY);
-        console.log(playerMoves);
+          
+        player.update();
         renderer.render(this);
         renderer.animate(player.x, player.y, layerToUpdate);
         
         parent.update.call(this);
-        playerMoves = inputHandler.handleKeyboardInput();
     };
 
     //GameScreen.render = function(ctx)
