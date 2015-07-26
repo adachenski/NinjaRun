@@ -46,7 +46,6 @@ var Player = (function (parent) {
             Player.Key.onKeyDown(e);
         }, false);
         
-        //console.log(Player.Key.isDown(Player.Key.DOWN));
         
         function animateLeft() {
             Player.x -= velocityX;
