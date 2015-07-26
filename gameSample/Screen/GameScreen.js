@@ -58,7 +58,7 @@ var GameScreen = (function(parent)
 
         player.update(playerMoves, maximalX, minimalX, maximalY, minimalY);
 
-        console.log(camera.followedObj);
+        //console.log(camera.followedObj);
         //debugger;
         camera.update();
         //draw(camera.viewX, camera.viewY);
@@ -117,7 +117,7 @@ var GameScreen = (function(parent)
 
     function startSpriteAnims()
     {
-        monsterSprite.start();
+        //monsterSprite.start();
     }
 
     function createSprites() {

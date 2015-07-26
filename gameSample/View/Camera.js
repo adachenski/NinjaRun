@@ -46,11 +46,14 @@ var Camera = (function() {
         }
         else {
             if (this.axis == AXIS.HORIZONTAL || this.axis == AXIS.BOTH) {
-                //console.log(this.axis)
-                if (this.followedObj.x - this.viewX + this.xDeadZone > this.viewW)
-                    this.viewX = this.followedObj.x - (this.viewW - this.xDeadZone);
-                else if (this.followedObj.x - this.xDeadZone < this.viewX)
+                console.log('INSIDE')
+                if (this.followedObj.x - this.viewX + this.xDeadZone > this.viewW/2) {
+                    console.log('FIRST')
+                    this.viewX = this.followedObj.x - (this.viewW / 2 - this.xDeadZone);
+                }
+                else if (this.followedObj.x - this.xDeadZone < this.viewX) {
                     this.viewX = this.followedObj.x - this.xDeadZone;
+                }
             }
             if (this.axis == AXIS.VERTICAL || this.axis == AXIS.BOTH) {
                 if (this.followedObj.y - this.viewY + this.yDeadZone > this.viewH)
@@ -59,7 +62,7 @@ var Camera = (function() {
                     this.viewY = this.followedObj.y - this.yDeadZone;
             }
         }
-        console.log(" x = ", this.viewX, " y = ", this.viewY);
+
         this.viewPortRect.set(this.viewX, this.viewY);
 
     };
