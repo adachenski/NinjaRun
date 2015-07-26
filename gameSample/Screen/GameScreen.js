@@ -30,9 +30,9 @@ var GameScreen = (function(parent)
         gameMap = Object.create(Map).init(0, 0, 2000, 1000);
 
         camera = Object.create(Camera)
-            .init(0, 0, /*viewPort W and H*/500, 300, gameMap.w, gameMap.h);
+            .init(0, 0, /*viewPort W and H*/600, 480, gameMap.w, gameMap.h);
 
-        camera.follow(player, 0, 0);
+        camera.follow(player, 0, 0 /*this.stage.getWidth()/2, this.stage.getHeight()/2*/);
 
         mapImg = new Image();
         mapImg.src = "SpriteSheets/map.png";
@@ -62,10 +62,11 @@ var GameScreen = (function(parent)
         //debugger;
         camera.update();
         //draw(camera.viewX, camera.viewY);
-        mapSprite.crop({x: camera.viewX, y: camera.viewY, width: 640, height: 480});
+        mapSprite.crop({x: camera.viewX, y: camera.viewY, width: camera.viewW, height: camera.viewH});
+
         renderer.render(this);
-        renderer.animate(player.x, player.y, layerToUpdate);
-        
+        //renderer.animate(player.x, player.y, layerToUpdate);
+
         parent.update.call(this);
         playerMoves = inputHandler.handleKeyboardInput();
     };
@@ -121,8 +122,8 @@ var GameScreen = (function(parent)
     }
 
     function createSprites() {
-        mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 2000, 1000);
-        monsterSprite = renderer.createBlobSprite("SpriteSheets/monster.png", player.x, player.y);
+        mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 6000, 1000);
+        monsterSprite = renderer.createBlobSprite("SpriteSheets/monster.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
     }
 
     function createLayers() {

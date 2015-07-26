@@ -28,21 +28,6 @@ var ScreenManager = (function () {
 
     ScreenManager.init = function () {
 
-        console.log('sm');
-
-        //lay = new Kinetic.Layer();
-        //r = new Kinetic.Rect({
-        //    fill: "red",
-        //    stroke: "blue",
-        //    x: 100,
-        //    y: 100,
-        //    width: 100,
-        //    height: 100
-        //    });
-        //
-        //lay.add(r);
-        //this.stage.add(lay);
-
         currentScreen = GameScreen;
 
         currentScreen.init();

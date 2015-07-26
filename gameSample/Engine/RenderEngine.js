@@ -94,7 +94,6 @@ var RenderEngine = (function () {
 
     RenderEngine.render = function(screen)
     {
-
         screen.stage.draw();
     };
 

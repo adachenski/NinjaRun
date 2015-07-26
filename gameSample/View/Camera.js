@@ -37,6 +37,8 @@ var Camera = (function() {
 
     Camera.follow = function (gameObj, xDeadZone, yDeadZone) {
         this.followedObj = gameObj;
+        this.xDeadZone = xDeadZone;
+        this.yDeadZone = yDeadZone;
     };
 
     Camera.update = function()
@@ -46,12 +48,13 @@ var Camera = (function() {
         }
         else {
             if (this.axis == AXIS.HORIZONTAL || this.axis == AXIS.BOTH) {
-                console.log('INSIDE')
-                if (this.followedObj.x - this.viewX + this.xDeadZone > this.viewW/2) {
-                    console.log('FIRST')
-                    this.viewX = this.followedObj.x - (this.viewW / 2 - this.xDeadZone);
+                console.log(this.followedObj.x, this.viewX, "viewW = ", this.viewW)
+                if (this.followedObj.x - this.viewX + this.xDeadZone >= this.viewW/2) {
+                    console.log('vliza')
+                    this.viewX = this.followedObj.x - (this.viewW/2  - this.xDeadZone);
                 }
-                else if (this.followedObj.x - this.xDeadZone < this.viewX) {
+                else if (this.followedObj.x - this.xDeadZone < this.viewX   ) {
+                    console.log('kak shte vliza tuka ')
                     this.viewX = this.followedObj.x - this.xDeadZone;
                 }
             }
