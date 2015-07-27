@@ -49,12 +49,10 @@ var Camera = (function() {
         else {
             if (this.axis == AXIS.HORIZONTAL || this.axis == AXIS.BOTH) {
                 console.log(this.followedObj.x, this.viewX, "viewW = ", this.viewW)
-                if (this.followedObj.x - this.viewX + this.xDeadZone >= this.viewW/2) {
-                    console.log('vliza')
-                    this.viewX = this.followedObj.x - (this.viewW/2  - this.xDeadZone);
+                if (this.followedObj.x - this.viewX + this.xDeadZone >= this.viewW) {
+                    this.viewX = this.followedObj.x - (this.viewW  - this.xDeadZone);
                 }
                 else if (this.followedObj.x - this.xDeadZone < this.viewX   ) {
-                    console.log('kak shte vliza tuka ')
                     this.viewX = this.followedObj.x - this.xDeadZone;
                 }
             }
@@ -68,6 +66,22 @@ var Camera = (function() {
 
         this.viewPortRect.set(this.viewX, this.viewY);
 
+        if(!this.viewPortRect.ifWithin(this.worldRect))
+        {
+            console.log("inside")
+            if(this.viewPortRect.left < this.worldRect.left) {
+                this.viewX = this.worldRect.left;
+            }
+            if (this.viewPortRect.top < this.worldRect.top) {
+                this.viewY = this.worldRect.top;
+            }
+            if (this.viewPortRect.right > this.worldRect.right) {
+                this.viewX = this.worldRect.right - this.viewW;
+            }
+            if (this.viewPortRect.bottom > this.worldRect.bottom) {
+                this.viewY = this.worldRect.bottom - this.viewH;
+            }
+        }
     };
 
 

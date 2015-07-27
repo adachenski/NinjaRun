@@ -13,8 +13,6 @@ var GameScreen = (function(parent)
         mapSprite,
         gameMap,
         camera,
-        //canvas = document.getElementById("mycanvas"),
-        //ctx = canvas.getContext("2d"),
         mapImg,
         playerMoves = inputHandler.handleKeyboardInput();
 
@@ -26,22 +24,17 @@ var GameScreen = (function(parent)
     {
         parent.init.call(this);
 
-        player = Object.create(Player).init(100, 100, 50, 50);
+        player = Object.create(Player).init(300, 100, 50, 50);
         gameMap = Object.create(Map).init(0, 0, 2000, 1000);
 
         camera = Object.create(Camera)
-            .init(0, 0, /*viewPort W and H*/600, 480, gameMap.w, gameMap.h);
+            .init(0, 0, /*viewPort W and H*/600, 480, gameMap.mapRect.width, gameMap.mapRect.height);
 
-        camera.follow(player, 0, 0 /*this.stage.getWidth()/2, this.stage.getHeight()/2*/);
-
-        mapImg = new Image();
-        mapImg.src = "SpriteSheets/map.png";
+        camera.follow(player, this.stage.getWidth()/2, this.stage.getHeight()/2);
 
         createSprites();
 
         createLayers();
-
-
 
         startSpriteAnims();
 
@@ -51,15 +44,13 @@ var GameScreen = (function(parent)
     GameScreen.update = function()
     {
         var layerToUpdate = this.layers["monsterLayer"],
-            maximalX = this.stage.getWidth(),
+            maximalX = 2000,
             minimalX = 0,
-            maximalY = this.stage.getHeight(),
+            maximalY = 1000,
             minimalY = 0;
 
         player.update(playerMoves, maximalX, minimalX, maximalY, minimalY);
 
-        //console.log(camera.followedObj);
-        //debugger;
         camera.update();
         //draw(camera.viewX, camera.viewY);
         mapSprite.crop({x: camera.viewX, y: camera.viewY, width: camera.viewW, height: camera.viewH});
@@ -102,7 +93,6 @@ var GameScreen = (function(parent)
         //ctx.drawImage(mapImg, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
     };
 
-
     //GameScreen.render = function(ctx)
     //{
     //    player.render(ctx);
@@ -118,11 +108,11 @@ var GameScreen = (function(parent)
 
     function startSpriteAnims()
     {
-        //monsterSprite.start();
+        monsterSprite.start();
     }
 
     function createSprites() {
-        mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 6000, 1000);
+        mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 2000, 1000);
         monsterSprite = renderer.createBlobSprite("SpriteSheets/monster.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
     }
 

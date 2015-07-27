@@ -25,11 +25,21 @@ var Rectangle = (function () {
     };
 
     Rectangle.ifWithin = function (rectObj) {
-        return (this.left < rectObj.right &&
-        this.right > rectObj.left &&
-        this.top < rectObj.bottom &&
-        this.bottom > rectObj.top)
-    }
+        console.log(this.left, this.right, this.top, this.bottom, " obj ", rectObj.left, rectObj.right, rectObj.top, rectObj.bottom);
+
+        if(
+            this.left > rectObj.left &&
+            this.top > rectObj.top &&
+            this.right < rectObj.right &&
+            this.bottom < rectObj.bottom
+        ) {return true}
+        else return false;
+        //
+        //return (this.left < rectObj.right &&
+        //this.right > rectObj.left &&
+        //this.top < rectObj.bottom &&
+        //this.bottom > rectObj.top)
+    };
 
 
     return Rectangle;
