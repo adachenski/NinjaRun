@@ -25,7 +25,7 @@ var Rectangle = (function () {
     };
 
     Rectangle.ifWithin = function (rectObj) {
-        console.log(this.left, this.right, this.top, this.bottom, " obj ", rectObj.left, rectObj.right, rectObj.top, rectObj.bottom);
+       // console.log(this.left, this.right, this.top, this.bottom, " obj ", rectObj.left, rectObj.right, rectObj.top, rectObj.bottom);
 
         if(
             this.left > rectObj.left &&

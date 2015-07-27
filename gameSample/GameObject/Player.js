@@ -9,6 +9,7 @@ var Player = (function (parent) {
             UP: 38,
             RIGHT: 39,
             DOWN: 40,
+            SPACE: 32,
 
             isDown: function (keyCode) {
                 return this._pressed[keyCode];
@@ -21,7 +22,7 @@ var Player = (function (parent) {
             onKeyUp: function (e) {
                 delete this._pressed[e.keyCode];
             }
-        }
+        };
 
         return this;
     };
@@ -58,6 +59,10 @@ var Player = (function (parent) {
             Player.y += velocityY;
         }
 
+        function animateJump() {
+            parent.jump.call(this);
+        }
+
         //console.log(Player.Key.isDown());
 
         if (Player.Key.isDown(Player.Key.UP)) {
@@ -72,6 +77,12 @@ var Player = (function (parent) {
         if (Player.Key.isDown(Player.Key.DOWN)) {
             animateDown()
         }
+        if (Player.Key.isDown(Player.Key.SPACE)) {
+            animateJump();
+        }
+
+        parent.gravity.call(this);
+
     };
 
 
@@ -84,4 +95,4 @@ var Player = (function (parent) {
     //};
 
     return Player;
-})(GameObject);
+})(Character);

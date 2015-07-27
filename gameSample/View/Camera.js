@@ -47,8 +47,9 @@ var Camera = (function() {
             throw new Error("followedObj is null")
         }
         else {
+
             if (this.axis == AXIS.HORIZONTAL || this.axis == AXIS.BOTH) {
-                console.log(this.followedObj.x, this.viewX, "viewW = ", this.viewW)
+                //console.log(this.followedObj.x, this.viewX, "viewW = ", this.viewW)
                 if (this.followedObj.x - this.viewX + this.xDeadZone >= this.viewW) {
                     this.viewX = this.followedObj.x - (this.viewW  - this.xDeadZone);
                 }
@@ -59,7 +60,7 @@ var Camera = (function() {
             if (this.axis == AXIS.VERTICAL || this.axis == AXIS.BOTH) {
                 if (this.followedObj.y - this.viewY + this.yDeadZone > this.viewH)
                     this.viewY = this.followedObj.y - (this.viewH - this.yDeadZone);
-                else if (this.followedObj.y - this.yDeadZone < this.viewY)
+                else if (this.followedObj.y - this.yDeadZone < this.viewH)
                     this.viewY = this.followedObj.y - this.yDeadZone;
             }
         }
@@ -68,7 +69,7 @@ var Camera = (function() {
 
         if(!this.viewPortRect.ifWithin(this.worldRect))
         {
-            console.log("inside")
+            //console.log("inside")
             if(this.viewPortRect.left < this.worldRect.left) {
                 this.viewX = this.worldRect.left;
             }

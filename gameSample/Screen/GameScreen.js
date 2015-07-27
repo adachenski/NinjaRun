@@ -14,7 +14,10 @@ var GameScreen = (function(parent)
         gameMap,
         camera,
         mapImg,
-        playerMoves = inputHandler.handleKeyboardInput();
+        playerMoves = inputHandler.handleKeyboardInput(),
+        trySprite,
+        tryObj = {x: 700, y: 400, w:50, h: 50},
+        collisionE;
 
     GameScreen.loadGraphics = function() {
         //console.log('loading graphics of the GameScreen');
@@ -24,36 +27,47 @@ var GameScreen = (function(parent)
     {
         parent.init.call(this);
 
-        player = Object.create(Player).init(300, 100, 50, 50);
+        player = Object.create(Player).init(300, 100, 90, 55);
         gameMap = Object.create(Map).init(0, 0, 2000, 1000);
 
-        camera = Object.create(Camera)
-            .init(0, 0, /*viewPort W and H*/600, 480, gameMap.mapRect.width, gameMap.mapRect.height);
+        camera = Object.create(Camera).init(0, 0, /*viewPort W and H*/600, 480, gameMap.mapRect.width, gameMap.mapRect.height);
+        collisionE = Object.create(Collision).init();
 
-        camera.follow(player, this.stage.getWidth()/2, this.stage.getHeight()/2);
+        camera.follow(player, GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
 
         createSprites();
-
         createLayers();
-
         startSpriteAnims();
+        loadMap("SpriteSheets/grass.png");
 
         return this;
     };
 
     GameScreen.update = function()
     {
-        var layerToUpdate = this.layers["monsterLayer"],
-            maximalX = 2000,
-            minimalX = 0,
-            maximalY = 1000,
-            minimalY = 0;
+        var layerToUpdate = this.layers["monsterLayer"];
 
-        player.update(playerMoves, maximalX, minimalX, maximalY, minimalY);
-
+        player.update(playerMoves);
         camera.update();
-        //draw(camera.viewX, camera.viewY);
-        mapSprite.crop({x: camera.viewX, y: camera.viewY, width: camera.viewW, height: camera.viewH});
+        updateMap();
+
+        for(var i = 0, len = gameMap.mapTilesObjs.length; i < len; i++)
+        {
+            collisionE.collision(player, gameMap.mapTilesObjs[i]);
+        }
+
+        //mapSprite.crop({x: camera.viewX, y: camera.viewY, width: camera.viewW, height: camera.viewH});
+
+        mapSprite.setX(-camera.viewX);
+        mapSprite.setY(-camera.viewY);
+
+        if(tryObj.x > camera.viewX && tryObj.x < camera.viewX + camera.viewW) {
+            trySprite.setX(700 - camera.viewX);
+        }
+        else
+        {
+            trySprite.setX(tryObj.x);
+        }
 
         renderer.render(this);
         //renderer.animate(player.x, player.y, layerToUpdate);
@@ -62,7 +76,69 @@ var GameScreen = (function(parent)
         playerMoves = inputHandler.handleKeyboardInput();
     };
 
-    function draw (viewX, viewY) {
+    function updateMap()
+    {
+        GameScreen.layers["earthLayer"].removeChildren();
+
+        for(var i = 0; i < gameMap.mapTilesObjs.length; i++)
+        {
+            //console.log(gameMap.mapTiles[i].getX(), camera.viewX);
+            if(gameMap.mapTilesObjs[i].x >= camera.viewX  &&
+                gameMap.mapTilesObjs[i].x < camera.viewX + camera.viewW &&
+                gameMap.mapTilesObjs[i].y > camera.viewY &&
+                gameMap.mapTilesObjs[i].y < camera.viewY + camera.viewW)
+            {
+                gameMap.mapTilesSprites[i].setX(gameMap.mapTilesObjs[i].x - camera.viewX);
+                gameMap.mapTilesSprites[i].setY(gameMap.mapTilesObjs[i].y - camera.viewY);
+                GameScreen.layers["earthLayer"].add(gameMap.mapTilesSprites[i]);
+            }
+            else
+            {
+                gameMap.mapTilesSprites[i].setY(gameMap.mapTilesObjs[i].y);
+                gameMap.mapTilesSprites[i].setX(gameMap.mapTilesObjs[i].x);
+            }
+        }
+    }
+
+    function loadMap(earthTilePath)
+    {
+        var mapTileArray = [];
+        for (var i = 0; i < Map.array.length; i++) {
+            for (var j = 0; j < Map.array[i].length; j++) {
+                if (Map.array[i][j] == 1) {
+
+                    var eartTileSprite = renderer.addSprite(earthTilePath, j * gameMap.tileW, 500, gameMap.tileW*2, gameMap.tileH);
+                    gameMap.mapTilesObjs.push({x: j * gameMap.tileW, y: i * gameMap.tileH, w: gameMap.tileW, h: gameMap.tileH });
+                    gameMap.mapTilesSprites.push(eartTileSprite);
+                }
+            }
+        }
+        //console.log(gameMap.mapTiles);
+        //debugger;
+        renderer.addLayer("earthLayer", GameScreen.stage, gameMap.mapTilesSprites, GameScreen.layers);
+
+    }
+
+
+    function startSpriteAnims()
+    {
+        monsterSprite.start();
+    }
+
+    function createSprites() {
+        mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 2000, 1000);
+        monsterSprite = renderer.createBlobSprite("SpriteSheets/monster.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
+        trySprite = renderer.addSprite("SpriteSheets/tweety.png", 700, 300, 150, 150, 700);
+    }
+
+    function createLayers() {
+        renderer.addLayer("mapLayer", GameScreen.stage, [mapSprite], GameScreen.layers);
+        renderer.addLayer("monsterLayer", GameScreen.stage, [monsterSprite], GameScreen.layers);
+        renderer.addLayer("tryLayer", GameScreen.stage, [trySprite], GameScreen.layers);
+    }
+
+
+    function draw(viewX, viewY) {
 
         var sx, sy, dx, dy;
         var sWidth, sHeight, dWidth, dHeight;
@@ -92,35 +168,6 @@ var GameScreen = (function(parent)
 
         //ctx.drawImage(mapImg, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
     };
-
-    //GameScreen.render = function(ctx)
-    //{
-    //    player.render(ctx);
-    //
-    //    for(var key in layers) {
-    //        if(layers.hasOwnProperty(key)) {
-    //
-    //            layers[key].draw();
-    //        }
-    //    }
-    //    parent.render(ctx);
-    //};
-
-    function startSpriteAnims()
-    {
-        monsterSprite.start();
-    }
-
-    function createSprites() {
-        mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 2000, 1000);
-        monsterSprite = renderer.createBlobSprite("SpriteSheets/monster.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
-    }
-
-    function createLayers() {
-        renderer.addLayer("mapLayer", GameScreen.stage, [mapSprite], GameScreen.layers);
-        renderer.addLayer("monsterLayer", GameScreen.stage, [monsterSprite], GameScreen.layers);
-    }
-
 
     return GameScreen;
 })(Screen);
