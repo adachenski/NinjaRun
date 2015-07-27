@@ -5,6 +5,11 @@
 var Player = (function (parent) {
     var Player = {};
 
+    var CONSTS = {
+        SCREEN_WIDTH : 640,
+        SCREEN_HEIGHT: 480
+    };
+
     Player.init = function(x, y, w, h)
     {
         parent.init.call(Player, x, y, w, h);
@@ -26,14 +31,14 @@ var Player = (function (parent) {
             onKeyUp: function(e) {
                 delete this._pressed[e.keyCode];
             }
-        }
+        };
 
         return this;
     };
 
     Player.update = function () {
         var velocityX = 5,
-            velocityY = 30,
+            velocityY = 10,
             currentX = Player.x,
             currentY = Player.y
             maxJump = 30;
@@ -47,17 +52,33 @@ var Player = (function (parent) {
         }, false);
         
         
-        function animateLeft() {
-            Player.x -= velocityX;
+        function animateLeft()
+        {
+            if(Player.x > 0)
+            {
+                Player.x -= velocityX;
+            }
         }
-        function animateUp() {
-            Player.y -= 10;
+        function animateUp()
+        {
+            if(Player.y > 0)
+            {
+                Player.y -= velocityY;
+            }
         }
-        function animateRight() {
-            Player.x += velocityX;
+        function animateRight()
+        {
+            if(Player.x < CONSTS.SCREEN_WIDTH - Player.w)
+            {
+                Player.x += velocityX;
+            }
         }
-        function animateDown() {
-            Player.y += velocityY;
+        function animateDown()
+        {
+            if(Player.y < CONSTS.SCREEN_HEIGHT - Player.h)
+            {
+                Player.y += velocityY;
+            }
         }
         
         console.log(Player.Key.isDown());

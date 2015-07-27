@@ -6,7 +6,7 @@
 var GameScreen = (function(parent)
 {
     var GameScreen = {},
-        player = Object.create(Player).init(100, 100, 50, 50),
+        player = Object.create(Player).init(100, 100, 50, 80),
         inputHandler = Object.create(InputHandlerEngine).init(),
         renderer = Object.create(RenderEngine).init(),
         monsterSprite;
