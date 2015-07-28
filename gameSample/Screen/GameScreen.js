@@ -9,6 +9,8 @@ var GameScreen = (function(parent)
         player = Object.create(Player).init(100, 100, 50, 40),
         ivoNPC,
         ivoSprite,
+        donchoNPC,
+        donchoSprite,
         inputHandler = Object.create(InputHandlerEngine).init(),
         renderer = Object.create(RenderEngine).init(),
         monsterSprite,
@@ -33,6 +35,7 @@ var GameScreen = (function(parent)
 
         player = Object.create(Player).init(300, 100, 90, 100);
         ivoNPC = Object.create(NPC).init(210, 200, 90, 100);
+        donchoNPC = Object.create(NPC).init(140, 200, 90, 100);
         gameMap = Object.create(Map).init(0, 0, 2000, 1000);
         camera = Object.create(Camera).init(0, 0, /*viewPort W and H*/600, 480, gameMap.mapRect.width, gameMap.mapRect.height);
         collisionE = Object.create(Collision).init();
@@ -66,6 +69,7 @@ var GameScreen = (function(parent)
 
         player.update(playerMoves);
         ivoNPC.update();
+        donchoNPC.update();
         camera.update();
         updateMap();
         updateNPCSprite();
@@ -97,11 +101,13 @@ var GameScreen = (function(parent)
             ivoNPC.y < camera.viewY + camera.viewH) 
             {
             GameScreen.layers["NPCLayer"].add(ivoSprite);
+            GameScreen.layers["NPCLayer"].add(donchoSprite);
             ivoSprite.setX(ivoNPC.x - camera.viewX);
+            donchoSprite.setX(donchoNPC.x - camera.viewX);
             
         } else {
-            console.log("i tuk vlizame");
             ivoSprite.setX(ivoNPC.x);
+            donchoSprite.setX(donchoNPC.x);
         }
     }
 
@@ -164,6 +170,7 @@ var GameScreen = (function(parent)
 
     function createSprites() {
         ivoSprite = renderer.addSprite("SpriteSheets/ivaylo_kenov.png", ivoNPC.x, ivoNPC.y, ivoNPC.w, ivoNPC.h);
+        donchoSprite = renderer.addSprite("SpriteSheets/doncho_minkov.png", donchoNPC.x, donchoNPC.y, donchoNPC.w, donchoNPC.h);
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", player.x, player.y);
         mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 2000, 1000);
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
@@ -173,7 +180,7 @@ var GameScreen = (function(parent)
     function createLayers() {
         renderer.addLayer("mapLayer", GameScreen.stage, [mapSprite], GameScreen.layers);
         renderer.addLayer("monsterLayer", GameScreen.stage, [monsterSprite], GameScreen.layers);
-        renderer.addLayer("NPCLayer", GameScreen.stage, [ivoSprite], GameScreen.layers);
+        renderer.addLayer("NPCLayer", GameScreen.stage, [ivoSprite, donchoSprite], GameScreen.layers);
         renderer.addLayer("tryLayer", GameScreen.stage, [trySprite], GameScreen.layers);
     }
 
