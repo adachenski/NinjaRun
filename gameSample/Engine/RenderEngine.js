@@ -83,7 +83,7 @@ var RenderEngine = (function () {
     RenderEngine.addToExistingLayer = function(key)
     {
 
-    }
+    };
 
     RenderEngine.addAnimation = function()
     {

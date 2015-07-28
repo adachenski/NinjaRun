@@ -31,8 +31,8 @@ var Player = (function (parent) {
         var velocityX = 5,
             velocityY = 30,
             currentX = Player.x,
-            currentY = Player.y
-        maxJump = 30;
+            currentY = Player.y,
+            maxJump = 30;
 
         window.addEventListener('keyup', function (e) {
             Player.Key.onKeyUp(e);
@@ -48,6 +48,7 @@ var Player = (function (parent) {
         }
 
         function animateUp() {
+            console.log('vlizam', Player.y)
             Player.y -= 10;
         }
 
@@ -56,16 +57,19 @@ var Player = (function (parent) {
         }
 
         function animateDown() {
+            //debugger;
+            console.log(console.log(Player.y))
             Player.y += velocityY;
         }
 
         function animateJump() {
-            parent.jump.call(this);
+
         }
 
         //console.log(Player.Key.isDown());
 
         if (Player.Key.isDown(Player.Key.UP)) {
+            //debugger;
             animateUp()
         }
         if (Player.Key.isDown(Player.Key.LEFT)) {
@@ -78,9 +82,11 @@ var Player = (function (parent) {
             animateDown()
         }
         if (Player.Key.isDown(Player.Key.SPACE)) {
-            animateJump();
+            console.log('space')
+            Player.hasJumped = true;
+            Player.grounded = false;
         }
-
+        parent.jump.call(Player);
         parent.gravity.call(this);
 
     };
