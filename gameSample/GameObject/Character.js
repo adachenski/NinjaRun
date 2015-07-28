@@ -27,7 +27,7 @@ var Character = (function (parent) {
         //console.log('==',this.hasJumped)
         //console.log('_____________________________________________')
         this.y += jumpSpeed;
-        console.log(Player.y, jumpSpeed);
+        //console.log(Player.y, jumpSpeed);
         if(this.hasJumped === true && this.grounded === false)
         {
             //console.log('daaa')
@@ -38,7 +38,7 @@ var Character = (function (parent) {
             if(jumpSpeed <= -15) {
                 this.hasJumped = false;
             }
-            //
+
             //setTimeout(function() {
             //    jumpSpeed = 0;
             //    console.log('BACK')

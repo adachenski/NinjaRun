@@ -26,10 +26,9 @@ var GameScreen = (function(parent)
     GameScreen.init = function()
     {
         parent.init.call(this);
-//debugger;
+
         player = Object.create(Player).init(300, 100, 90, 100);
         gameMap = Object.create(Map).init(0, 0, 2000, 1000);
-
         camera = Object.create(Camera).init(0, 0, /*viewPort W and H*/600, 480, gameMap.mapRect.width, gameMap.mapRect.height);
         collisionE = Object.create(Collision).init();
 
@@ -51,27 +50,12 @@ var GameScreen = (function(parent)
         camera.update();
         updateMap();
 
-        console.log(player.x, player.y)
-
-        for(var i = 0, len = gameMap.mapTilesObjs.length; i < len; i++) {
-            collisionE.collision(player, gameMap.mapTilesObjs[i]);
-        }
-
+        //console.log(player.x, player.y)
         //mapSprite.crop({x: camera.viewX, y: camera.viewY, width: camera.viewW, height: camera.viewH});
-
         mapSprite.setX(-camera.viewX);
         mapSprite.setY(-camera.viewY);
 
-        if(tryObj.x > camera.viewX && tryObj.x < camera.viewX + camera.viewW) {
-            trySprite.setX(700 - camera.viewX);
-        }
-        else trySprite.setX(tryObj.x);
-
-        document.getElementById('btn').addEventListener('mouseup', function() {
-            console.log('vadim 30')
-            player.y -= 0.5;
-        }, false);
-
+        handlePlayerGroundColl();
 
         renderer.render(this);
         //renderer.animate(player.x, player.y, layerToUpdate);
@@ -117,12 +101,20 @@ var GameScreen = (function(parent)
                 }
             }
         }
-        //console.log(gameMap.mapTiles);
-        //debugger;
         renderer.addLayer("earthLayer", GameScreen.stage, gameMap.mapTilesSprites, GameScreen.layers);
-
     }
 
+    function handlePlayerGroundColl() {
+        for (var i = 0, len = gameMap.mapTilesObjs.length; i < len; i++) {
+            collisionE.collision(player, gameMap.mapTilesObjs[i]);
+        }
+
+        //test code
+        if (tryObj.x > camera.viewX && tryObj.x < camera.viewX + camera.viewW) {
+            trySprite.setX(700 - camera.viewX);
+        }
+        else trySprite.setX(tryObj.x);
+    }
 
     function startSpriteAnims()
     {
