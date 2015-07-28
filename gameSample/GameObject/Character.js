@@ -11,8 +11,9 @@ var Character = (function (parent) {
         parent.init.call(this, x, y, w, h);
         this.hasJumped = false;
         this.grounded = true;
-
-        this.jumpVel = 0;
+        this.runVel = GameContants.runVel;
+        this.maxRunVel = GameContants.maxRunVel;
+        this.jumpVel = GameContants.jumpVel;
 
         return this;
     };
@@ -27,7 +28,7 @@ var Character = (function (parent) {
         //console.log('==',this.hasJumped)
         //console.log('_____________________________________________')
 
-        console.log('===', this.y, this.hasJumped, this.grounded);
+        //console.log('===', this.y, this.hasJumped, this.grounded);
 
         this.y += this.jumpVel;
 

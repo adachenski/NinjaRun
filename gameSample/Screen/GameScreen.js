@@ -7,6 +7,8 @@ var GameScreen = (function(parent)
 {
     var GameScreen = {},
         player = Object.create(Player).init(100, 100, 50, 40),
+        ivoNPC,
+        ivoSprite,
         inputHandler = Object.create(InputHandlerEngine).init(),
         renderer = Object.create(RenderEngine).init(),
         monsterSprite,
@@ -30,6 +32,7 @@ var GameScreen = (function(parent)
         parent.init.call(this);
 
         player = Object.create(Player).init(300, 100, 90, 100);
+        ivoNPC = Object.create(NPC).init(210, 200, 90, 100);
         gameMap = Object.create(Map).init(0, 0, 2000, 1000);
         camera = Object.create(Camera).init(0, 0, /*viewPort W and H*/600, 480, gameMap.mapRect.width, gameMap.mapRect.height);
         collisionE = Object.create(Collision).init();
@@ -62,8 +65,10 @@ var GameScreen = (function(parent)
         handlePlayerGroundColl();
 
         player.update(playerMoves);
+        ivoNPC.update();
         camera.update();
         updateMap();
+        updateNPCSprite();
 
         //console.log('=======', player.x, player.y)
         //mapSprite.crop({x: camera.viewX, y: camera.viewY, width: camera.viewW, height: camera.viewH});
@@ -75,6 +80,30 @@ var GameScreen = (function(parent)
 
         parent.update.call(this);
     };
+    
+    function updateNPCSprite()
+    {
+            // console.log(camera.viewX, camera.viewY);
+            // console.log(ivoNPC.x > camera.viewX);
+            // console.log(ivoNPC.x < camera.viewX + camera.viewW);
+            // console.log(ivoNPC.y > camera.viewY);
+        
+        GameScreen.layers["NPCLayer"].removeChildren();
+        
+        //console.log(ivoNPC.x, ivoSprite.getX());
+        if(ivoNPC.x > camera.viewX && 
+            ivoNPC.x < camera.viewX + camera.viewW &&
+            ivoNPC.y > camera.viewY && 
+            ivoNPC.y < camera.viewY + camera.viewH) 
+            {
+            GameScreen.layers["NPCLayer"].add(ivoSprite);
+            ivoSprite.setX(ivoNPC.x - camera.viewX);
+            
+        } else {
+            console.log("i tuk vlizame");
+            ivoSprite.setX(ivoNPC.x);
+        }
+    }
 
     function updateMap()
     {
@@ -134,16 +163,17 @@ var GameScreen = (function(parent)
     }
 
     function createSprites() {
+        ivoSprite = renderer.addSprite("SpriteSheets/ivaylo_kenov.png", ivoNPC.x, ivoNPC.y, ivoNPC.w, ivoNPC.h);
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", player.x, player.y);
         mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 2000, 1000);
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
         trySprite = renderer.addSprite("SpriteSheets/tweety.png", 700, 300, 150, 150, 700);
-
     }
 
     function createLayers() {
         renderer.addLayer("mapLayer", GameScreen.stage, [mapSprite], GameScreen.layers);
         renderer.addLayer("monsterLayer", GameScreen.stage, [monsterSprite], GameScreen.layers);
+        renderer.addLayer("NPCLayer", GameScreen.stage, [ivoSprite], GameScreen.layers);
         renderer.addLayer("tryLayer", GameScreen.stage, [trySprite], GameScreen.layers);
     }
 

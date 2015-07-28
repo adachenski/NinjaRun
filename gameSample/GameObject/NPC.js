@@ -14,8 +14,8 @@ var NPC = (function(parent)
     };
 
     NPC.update = function()
-    {
-
+    {   
+        this.x += this.runVel;
     };
 
     NPC.render = function(ctx)
