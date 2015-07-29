@@ -6,8 +6,6 @@ var InputHandlerEngine = (function InputHandlerEngine(){
 		},
 		handleKeyboardInput: function()
 		{
-<<<<<<< HEAD
-=======
 			var moves = [];
 			window.addEventListener('keydown', function(e){
 				if(e.keyCode === 37) {
@@ -21,7 +19,7 @@ var InputHandlerEngine = (function InputHandlerEngine(){
 			});
 			//console.log(moves)
 			return moves;
->>>>>>> nickBranch
+
 		},
 		handleMouseInput: function()
 		{

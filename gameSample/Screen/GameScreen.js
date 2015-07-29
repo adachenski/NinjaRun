@@ -6,13 +6,9 @@
 var GameScreen = (function(parent)
 {
     var GameScreen = {},
-        player = Object.create(Player).init(100, 100, 50, 80),
+        player = Object.create(Player).init(100, 100, 50, 40),
         inputHandler = Object.create(InputHandlerEngine).init(),
         renderer = Object.create(RenderEngine).init(),
-<<<<<<< HEAD
-        monsterSprite;
-
-=======
         monsterSprite,
         mapSprite,
         gameMap,
@@ -23,7 +19,7 @@ var GameScreen = (function(parent)
         tryObj = {x: 700, y: 400, w:50, h: 50},
         collisionE,
         npc1;
->>>>>>> nickBranch
+
 
     GameScreen.loadGraphics = function() {
         //console.log('loading graphics of the GameScreen');
@@ -32,9 +28,6 @@ var GameScreen = (function(parent)
     GameScreen.init = function()
     {
         parent.init.call(this);
-<<<<<<< HEAD
-        
-=======
 
         player = Object.create(Player).init(300, 100, 90, 100);
         gameMap = Object.create(Map).init(0, 0, 2000, 1000);
@@ -46,7 +39,6 @@ var GameScreen = (function(parent)
 
         camera.follow(player, GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
 
->>>>>>> nickBranch
         createSprites();
         createLayers();
         startSpriteAnims();
@@ -57,7 +49,6 @@ var GameScreen = (function(parent)
 
     GameScreen.update = function()
     {
-<<<<<<< HEAD
         var layerToUpdate = this.layers["monsterLayer"],
             maximalX = this.stage.getWidth(),
             minimalX = 0,
@@ -65,7 +56,7 @@ var GameScreen = (function(parent)
             minimalY = 0;
           
         player.update();
-=======
+
         var layerToUpdate = this.layers["monsterLayer"];
 
         handlePlayerGroundColl();
@@ -79,8 +70,6 @@ var GameScreen = (function(parent)
         mapSprite.setX(-camera.viewX);
         mapSprite.setY(-camera.viewY);
 
-
->>>>>>> nickBranch
         renderer.render(this);
         //renderer.animate(player.x, player.y, layerToUpdate);
 
@@ -145,13 +134,11 @@ var GameScreen = (function(parent)
     }
 
     function createSprites() {
-<<<<<<< HEAD
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", player.x, player.y);
-=======
         mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 2000, 1000);
-        monsterSprite = renderer.createBlobSprite("SpriteSheets/monster.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
+        monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
         trySprite = renderer.addSprite("SpriteSheets/tweety.png", 700, 300, 150, 150, 700);
->>>>>>> nickBranch
+
     }
 
     function createLayers() {
