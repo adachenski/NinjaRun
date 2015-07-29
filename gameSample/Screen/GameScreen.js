@@ -17,7 +17,8 @@ var GameScreen = (function(parent)
         playerMoves = inputHandler.handleKeyboardInput(),
         trySprite,
         tryObj = {x: 700, y: 400, w:50, h: 50},
-        collisionE;
+        collisionE,
+        npc1;
 
     GameScreen.loadGraphics = function() {
         //console.log('loading graphics of the GameScreen');
@@ -31,6 +32,9 @@ var GameScreen = (function(parent)
         gameMap = Object.create(Map).init(0, 0, 2000, 1000);
         camera = Object.create(Camera).init(0, 0, /*viewPort W and H*/600, 480, gameMap.mapRect.width, gameMap.mapRect.height);
         collisionE = Object.create(Collision).init();
+
+        npc1 = Object.create(NPC).init(100, 100, 100, 100);
+        console.log(npc1);
 
         camera.follow(player, GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
 
@@ -46,16 +50,17 @@ var GameScreen = (function(parent)
     {
         var layerToUpdate = this.layers["monsterLayer"];
 
+        handlePlayerGroundColl();
+
         player.update(playerMoves);
         camera.update();
         updateMap();
 
-        //console.log(player.x, player.y)
+        //console.log('=======', player.x, player.y)
         //mapSprite.crop({x: camera.viewX, y: camera.viewY, width: camera.viewW, height: camera.viewH});
         mapSprite.setX(-camera.viewX);
         mapSprite.setY(-camera.viewY);
 
-        handlePlayerGroundColl();
 
         renderer.render(this);
         //renderer.animate(player.x, player.y, layerToUpdate);

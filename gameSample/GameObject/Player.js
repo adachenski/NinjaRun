@@ -48,7 +48,7 @@ var Player = (function (parent) {
         }
 
         function animateUp() {
-            console.log('vlizam', Player.y)
+            //console.log('vlizam', Player.y)
             Player.y -= 10;
         }
 
@@ -58,7 +58,7 @@ var Player = (function (parent) {
 
         function animateDown() {
             //debugger;
-            console.log(console.log(Player.y))
+            console.log(console.log(Player.y));
             Player.y += velocityY;
         }
 
@@ -83,10 +83,11 @@ var Player = (function (parent) {
         }
         if (Player.Key.isDown(Player.Key.SPACE)) {
             console.log('space')
-            Player.hasJumped = true;
-            Player.grounded = false;
+            this.hasJumped = true;
+            this.grounded = false;
         }
-        parent.jump.call(Player);
+        //console.log('_________________',this.hasJumped, Player.grounded)
+        parent.jump.call(this);
         parent.gravity.call(this);
 
     };

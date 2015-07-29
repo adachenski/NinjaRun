@@ -4,8 +4,7 @@
 
 var Character = (function (parent) {
 
-    var Character = {},
-        jumpSpeed = 0;
+    var Character = {};
 
     Character.init = function(x, y, w, h)
     {
@@ -13,29 +12,34 @@ var Character = (function (parent) {
         this.hasJumped = false;
         this.grounded = true;
 
+        this.jumpVel = 0;
 
         return this;
     };
 
     Character.gravity = function()
     {
-        this.y += 2;
+        this.y += 10;
     };
 
     Character.jump = function()
     {
         //console.log('==',this.hasJumped)
         //console.log('_____________________________________________')
-        this.y += jumpSpeed;
-        //console.log(Player.y, jumpSpeed);
-        if(this.hasJumped === true && this.grounded === false)
+
+        console.log('===', this.y, this.hasJumped, this.grounded);
+
+        this.y += this.jumpVel;
+
+        if(this.hasJumped == true && this.grounded == false)
         {
-            //console.log('daaa')
+            //this.y -= 3;
+            //console.log('DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
             //this.hasJumped = false;
+            //debugger;
+            this.jumpVel -= 5;
 
-            jumpSpeed = -10;
-
-            if(jumpSpeed <= -15) {
+            if(this.jumpVel <= -50) {
                 this.hasJumped = false;
             }
 
@@ -46,10 +50,15 @@ var Character = (function (parent) {
             //}, 500);
         }
 
-        if(this.hasJumped === false && this.grounded === false) {
-            jumpSpeed += 2;
+        if(this.hasJumped == false && this.grounded == false) {
+        //    this.jumpSpeed += 2;
+            this.jumpVel = 0;
         }
-
+        if(this.jumpVel > 20) {
+            this.jumpVel = 0;
+            this.grounded = true;
+        }
+      //  if(this.grounded == true) this.jumpSpeed = 0;
     };
 
     return Character;
