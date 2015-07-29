@@ -34,14 +34,18 @@ var GameScreen = (function(parent)
         parent.init.call(this);
 
         player = Object.create(Player).init(300, 100, 90, 100);
+<<<<<<< HEAD
         ivoNPC = Object.create(NPC).init(210, 200, 90, 100);
         donchoNPC = Object.create(NPC).init(140, 200, 90, 100);
         gameMap = Object.create(Map).init(0, 0, 2000, 1000);
+=======
+        gameMap = Object.create(Map).init(0, 0, 3000, 1000);
+>>>>>>> nickBranch
         camera = Object.create(Camera).init(0, 0, /*viewPort W and H*/600, 480, gameMap.mapRect.width, gameMap.mapRect.height);
         collisionE = Object.create(Collision).init();
 
         npc1 = Object.create(NPC).init(100, 100, 100, 100);
-        console.log(npc1);
+        //console.log(npc1);
 
         camera.follow(player, GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
 
@@ -55,7 +59,7 @@ var GameScreen = (function(parent)
 
     GameScreen.update = function()
     {
-        var layerToUpdate = this.layers["monsterLayer"],
+        var //layerToUpdate = this.layers["monsterLayer"],
             maximalX = this.stage.getWidth(),
             minimalX = 0,
             maximalY = this.stage.getHeight(),
@@ -63,16 +67,19 @@ var GameScreen = (function(parent)
           
         player.update();
 
-        var layerToUpdate = this.layers["monsterLayer"];
+        //var layerToUpdate = this.layers["monsterLayer"];
 
         handlePlayerGroundColl();
-
+        gameMap.updateMap(camera);
         player.update(playerMoves);
         ivoNPC.update();
         donchoNPC.update();
         camera.update();
+<<<<<<< HEAD
         updateMap();
         updateNPCSprite();
+=======
+>>>>>>> nickBranch
 
         //console.log('=======', player.x, player.y)
         //mapSprite.crop({x: camera.viewX, y: camera.viewY, width: camera.viewW, height: camera.viewH});
@@ -111,45 +118,27 @@ var GameScreen = (function(parent)
         }
     }
 
-    function updateMap()
-    {
-        GameScreen.layers["earthLayer"].removeChildren();
 
-        for(var i = 0; i < gameMap.mapTilesObjs.length; i++)
-        {
-            //console.log(gameMap.mapTiles[i].getX(), camera.viewX);
-            if(gameMap.mapTilesObjs[i].x >= camera.viewX  &&
-                gameMap.mapTilesObjs[i].x < camera.viewX + camera.viewW &&
-                gameMap.mapTilesObjs[i].y > camera.viewY &&
-                gameMap.mapTilesObjs[i].y < camera.viewY + camera.viewW)
-            {
-                gameMap.mapTilesSprites[i].setX(gameMap.mapTilesObjs[i].x - camera.viewX);
-                gameMap.mapTilesSprites[i].setY(gameMap.mapTilesObjs[i].y - camera.viewY);
-                GameScreen.layers["earthLayer"].add(gameMap.mapTilesSprites[i]);
-            }
-            else
-            {
-                gameMap.mapTilesSprites[i].setY(gameMap.mapTilesObjs[i].y);
-                gameMap.mapTilesSprites[i].setX(gameMap.mapTilesObjs[i].x);
-            }
-        }
-    }
-
-    function loadMap(earthTilePath)
-    {
+    function loadMap(earthTilePath) {
         var mapTileArray = [];
-        for (var i = 0; i < Map.array.length; i++) {
-            for (var j = 0; j < Map.array[i].length; j++) {
-                if (Map.array[i][j] == 1) {
+        for (var i = 0; i < Map.arrMap1.length; i++) {
+            for (var j = 0; j < Map.arrMap1[i].length; j++) {
+                if (Map.arrMap1[i][j] == 1) {
 
-                    var eartTileSprite = renderer.addSprite(earthTilePath, j * gameMap.tileW, 500, gameMap.tileW*2, gameMap.tileH);
-                    gameMap.mapTilesObjs.push({x: j * gameMap.tileW, y: i * gameMap.tileH, w: gameMap.tileW, h: gameMap.tileH });
+                    var eartTileSprite = renderer.addSprite(earthTilePath, j * gameMap.tileW, 500, gameMap.tileW * 2, gameMap.tileH);
+                    gameMap.mapTilesObjs.push({
+                        x: j * gameMap.tileW,
+                        y: i * gameMap.tileH,
+                        w: gameMap.tileW,
+                        h: gameMap.tileH
+                    });
                     gameMap.mapTilesSprites.push(eartTileSprite);
                 }
             }
         }
         renderer.addLayer("earthLayer", GameScreen.stage, gameMap.mapTilesSprites, GameScreen.layers);
     }
+
 
     function handlePlayerGroundColl() {
         for (var i = 0, len = gameMap.mapTilesObjs.length; i < len; i++) {
@@ -172,7 +161,8 @@ var GameScreen = (function(parent)
         ivoSprite = renderer.addSprite("SpriteSheets/ivaylo_kenov.png", ivoNPC.x, ivoNPC.y, ivoNPC.w, ivoNPC.h);
         donchoSprite = renderer.addSprite("SpriteSheets/doncho_minkov.png", donchoNPC.x, donchoNPC.y, donchoNPC.w, donchoNPC.h);
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", player.x, player.y);
-        mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 2000, 1000);
+        mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, gameMap.mapRect.width, gameMap.mapRect.h);
+        console.log()
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
         trySprite = renderer.addSprite("SpriteSheets/tweety.png", 700, 300, 150, 150, 700);
     }

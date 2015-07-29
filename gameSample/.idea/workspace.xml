@@ -41,23 +41,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameScreen.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Screen/GameScreen.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2347826">
-              <caret line="8" column="59" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
-              <folding>
-                <element signature="e#1404#2192#0" expanded="false" />
-                <element signature="e#2224#3197#0" expanded="false" />
-                <element signature="e#3239#3908#0" expanded="false" />
-                <element signature="e#4344#4382#0" expanded="false" />
-                <element signature="e#4874#5156#0" expanded="false" />
-                <element signature="e#5191#6037#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GameObject.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameObject/GameObject.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -68,14 +51,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Character.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Character.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GameObject/Character.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.2826087">
               <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
-              <folding>
-                <element signature="e#1007#1032#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,11 +95,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="GameScreen.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Screen/GameScreen.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="80" column="31" selection-start-line="80" selection-start-column="28" selection-end-line="80" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Map.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/View/Map.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -127,8 +118,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3076923">
-              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+            <state vertical-scroll-proportion="-15.807693">
+              <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -177,14 +168,14 @@
         <option value="$PROJECT_DIR$/Screen/Screen.js" />
         <option value="$PROJECT_DIR$/View/Camera.js" />
         <option value="$PROJECT_DIR$/Engine/RenderEngine.js" />
-        <option value="$PROJECT_DIR$/View/Map.js" />
         <option value="$PROJECT_DIR$/Engine/CollisionEngine.js" />
         <option value="$PROJECT_DIR$/Screen/MainMenuScreen.js" />
         <option value="$PROJECT_DIR$/GameObject/NPC.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/GameObject/Character.js" />
         <option value="$PROJECT_DIR$/Engine/InputHandlerEngine.js" />
         <option value="$PROJECT_DIR$/GameObject/Player.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/View/Map.js" />
         <option value="$PROJECT_DIR$/Screen/GameScreen.js" />
       </list>
     </option>
@@ -373,14 +364,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1404#2192#0" expanded="false" />
-            <element signature="e#2224#3197#0" expanded="false" />
-            <element signature="e#3239#3908#0" expanded="false" />
-            <element signature="e#4344#4382#0" expanded="false" />
-            <element signature="e#4874#5156#0" expanded="false" />
-            <element signature="e#5191#6037#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -426,14 +410,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#1404#2192#0" expanded="false" />
-            <element signature="e#2224#3197#0" expanded="false" />
-            <element signature="e#3239#3908#0" expanded="false" />
-            <element signature="e#4344#4382#0" expanded="false" />
-            <element signature="e#4874#5156#0" expanded="false" />
-            <element signature="e#5191#6037#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -495,14 +472,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding>
-            <element signature="e#1404#2192#0" expanded="false" />
-            <element signature="e#2224#3197#0" expanded="false" />
-            <element signature="e#3239#3908#0" expanded="false" />
-            <element signature="e#4344#4382#0" expanded="false" />
-            <element signature="e#4874#5156#0" expanded="false" />
-            <element signature="e#5191#6037#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -557,14 +527,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1404#2192#0" expanded="false" />
-            <element signature="e#2224#3197#0" expanded="false" />
-            <element signature="e#3239#3908#0" expanded="false" />
-            <element signature="e#4344#4382#0" expanded="false" />
-            <element signature="e#4874#5156#0" expanded="false" />
-            <element signature="e#5191#6037#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -625,14 +588,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1404#2192#0" expanded="false" />
-            <element signature="e#2224#3197#0" expanded="false" />
-            <element signature="e#3239#3908#0" expanded="false" />
-            <element signature="e#4344#4382#0" expanded="false" />
-            <element signature="e#4874#5156#0" expanded="false" />
-            <element signature="e#5191#6037#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -776,34 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/View/Map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameObject/Character.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
-          <folding>
-            <element signature="e#1007#1032#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Engine/RenderEngine.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -850,18 +778,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/View/Map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.807693">
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Screen/GameScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2347826">
-          <caret line="8" column="59" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
-          <folding>
-            <element signature="e#1404#2192#0" expanded="false" />
-            <element signature="e#2224#3197#0" expanded="false" />
-            <element signature="e#3239#3908#0" expanded="false" />
-            <element signature="e#4344#4382#0" expanded="false" />
-            <element signature="e#4874#5156#0" expanded="false" />
-            <element signature="e#5191#6037#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="80" column="31" selection-start-line="80" selection-start-column="28" selection-end-line="80" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameObject/Character.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2826087">
+          <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

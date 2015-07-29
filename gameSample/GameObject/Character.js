@@ -11,9 +11,14 @@ var Character = (function (parent) {
         parent.init.call(this, x, y, w, h);
         this.hasJumped = false;
         this.grounded = true;
+<<<<<<< HEAD
         this.runVel = GameContants.runVel;
         this.maxRunVel = GameContants.maxRunVel;
         this.jumpVel = GameContants.jumpVel;
+=======
+
+        this.jumpVel = GameConsts.jumpVel;
+>>>>>>> nickBranch
 
         return this;
     };
