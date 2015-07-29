@@ -10,14 +10,29 @@ var NPC = (function(parent)
     {
         parent.init.call(this, x, y, w, h);
         this.isRunning = true;
+        
         return this;
     };
 
-    NPC.update = function()
+    NPC.update = function(map)
     {
-        this.x += this.runVel;
+        this.x += 5;
+        
         parent.gravity.call(this);
         parent.accelerate.call(this);
+        
+            for(var j = 0, len = map.length; j < len; j += 1) {
+                if(map[j].type == 'brick') {
+                    console.log("tuhla e")
+                    if((this.x + this.w | 0) === map[j].x) {
+                        console.log("vlizame", this.x, map[j].x);
+                        this.hasJumped = true;
+                        this.grounded = false;
+                        
+                    }
+                }
+            }
+        parent.jump.call(this);
     };
 
     NPC.render = function(ctx)

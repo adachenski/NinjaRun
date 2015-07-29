@@ -52,8 +52,8 @@ var GameScreen = (function(parent)
         player.update();
         gameMap.updateMap(camera, "earthLayer", gameMap.mapTilesObjs, gameMap.mapTilesSprites);
         gameMap.updateMap(camera, "potionsLayer", gameMap.mapPotionsObjs, gameMap.mapPotionsSprites);
-        ivoNPC.update();
-        donchoNPC.update();
+        ivoNPC.update(gameMap.mapTilesObjs);
+        donchoNPC.update(gameMap.mapTilesObjs);
         camera.update();
         
         mapSprite.setX(-camera.viewX);
