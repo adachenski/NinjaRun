@@ -52,7 +52,6 @@ var Character = (function (parent) {
     Character.accelerate = function()
     {
         if(this.isRunning) {
-            console.log("vlizame i tichame", this.runVel);
             if(this.runVel <= this.maxRunVel) {
                 this.runVel += 0.2;
             }

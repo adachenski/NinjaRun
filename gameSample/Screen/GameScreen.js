@@ -50,11 +50,12 @@ var GameScreen = (function(parent)
     {
         
         player.update();
-        gameMap.updateMap(camera);
+        gameMap.updateMap(camera, "earthLayer", gameMap.mapTilesObjs, gameMap.mapTilesSprites);
+        gameMap.updateMap(camera, "potionsLayer", gameMap.mapPotionsObjs, gameMap.mapPotionsSprites);
         ivoNPC.update();
         donchoNPC.update();
         camera.update();
-
+        
         mapSprite.setX(-camera.viewX);
         mapSprite.setY(-camera.viewY);
 
@@ -96,13 +97,15 @@ var GameScreen = (function(parent)
     function handlePlayerGroundColl() {
         for (var i = 0, len = gameMap.mapTilesObjs.length; i < len; i++) {
             collisionE.collision(player, gameMap.mapTilesObjs[i]);
+            collisionE.collision(ivoNPC, gameMap.mapTilesObjs[i]);
+            collisionE.collision(donchoNPC, gameMap.mapTilesObjs[i]);
         }
 
         //test code
-        if (tryObj.x > camera.viewX && tryObj.x < camera.viewX + camera.viewW) {
-            trySprite.setX(700 - camera.viewX);
-        }
-        else trySprite.setX(tryObj.x);
+        // if (tryObj.x > camera.viewX && tryObj.x < camera.viewX + camera.viewW) {
+        //     trySprite.setX(700 - camera.viewX);
+        // }
+        // else trySprite.setX(tryObj.x);
     }
 
     function startSpriteAnims() {
@@ -115,14 +118,12 @@ var GameScreen = (function(parent)
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", player.x, player.y);
         mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, gameMap.mapRect.width, gameMap.mapRect.h);
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
-        trySprite = renderer.addSprite("SpriteSheets/tweety.png", 700, 300, 150, 150, 700);
     }
 
     function createLayers() {
         renderer.addLayer("mapLayer", GameScreen.stage, [mapSprite], GameScreen.layers);
         renderer.addLayer("monsterLayer", GameScreen.stage, [monsterSprite], GameScreen.layers);
         renderer.addLayer("NPCLayer", GameScreen.stage, [ivoSprite, donchoSprite], GameScreen.layers);
-        renderer.addLayer("tryLayer", GameScreen.stage, [trySprite], GameScreen.layers);
     }
 
     function ifWithinViewport(obj) {

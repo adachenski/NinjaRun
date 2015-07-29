@@ -9,8 +9,8 @@ var Map = (function()
         this.tileW = 100;
         this.tileH = 100;
         
-        this.potionW = 55;
-        this.potionH = 55;
+        this.potionW = 50;
+        this.potionH = 50;
 
         this.mapTilesSprites = [];
         this.mapPotionsSprites = [];
@@ -23,22 +23,22 @@ var Map = (function()
         return this;
     };
 
-    Map.updateMap = function(camera) {
-        GameScreen.layers["earthLayer"].removeChildren();
+    Map.updateMap = function(camera, layer, mapObjs, mapSprites) {
+        GameScreen.layers[layer].removeChildren();
 
-        for (var i = 0; i < this.mapTilesObjs.length; i++) {
-            if (this.mapTilesObjs[i].x >= camera.viewX &&
-                this.mapTilesObjs[i].x < camera.viewX + camera.viewW &&
-                this.mapTilesObjs[i].y > camera.viewY &&
-                this.mapTilesObjs[i].y < camera.viewY + camera.viewW)
+        for (var i = 0; i < mapObjs.length; i++) {
+            if (mapObjs[i].x >= camera.viewX &&
+                mapObjs[i].x < camera.viewX + camera.viewW &&
+                mapObjs[i].y > camera.viewY &&
+                mapObjs[i].y < camera.viewY + camera.viewW)
             {
-                this.mapTilesSprites[i].setX(this.mapTilesObjs[i].x - camera.viewX);
-                this.mapTilesSprites[i].setY(this.mapTilesObjs[i].y - camera.viewY);
-                GameScreen.layers["earthLayer"].add(this.mapTilesSprites[i]);               
+                mapSprites[i].setX(mapObjs[i].x - camera.viewX);
+                mapSprites[i].setY(mapObjs[i].y - camera.viewY);
+                GameScreen.layers[layer].add(mapSprites[i]);               
             }
             else {
-                this.mapTilesSprites[i].setY(this.mapTilesObjs[i].y);
-                this.mapTilesSprites[i].setX(this.mapTilesObjs[i].x);
+                mapSprites[i].setY(mapObjs[i].y);
+                mapSprites[i].setX(mapObjs[i].x);
             }
         }
     }
@@ -83,7 +83,11 @@ var Map = (function()
                 }
                 else if(Map.arrMap1[i][j] == 'v') {
                     potionSpriteToAdd = renderer.addSprite(GameConsts.velocityPotion, j * this.potionW, this.potionH, this.potionW, this.potionH);
-                    pushIntoMapPotionObjs.call(this, j * this.potionW, i * this.potionH, this.potionW, this.potionW, "velocity");
+                    pushIntoMapPotionObjs.call(this, (j * this.potionW) * 2, (i * this.potionH) * 2, this.potionW, this.potionW, "velocity");
+                }
+                else if(Map.arrMap1[i][j] == 's') {
+                    potionSpriteToAdd = renderer.addSprite(GameConsts.slowerEnemiesPotion, j * this.potionW, this.potionH, this.potionW, this.potionH);
+                    pushIntoMapPotionObjs.call(this, (j * this.potionW) * 2, (i * this.potionH) * 2, this.potionW, this.potionW, "velocity");
                 }
                 if (tileSpriteToAdd !== null) this.mapTilesSprites.push(tileSpriteToAdd);
                 if (potionSpriteToAdd !== null) this.mapPotionsSprites.push(potionSpriteToAdd);
@@ -98,10 +102,10 @@ var Map = (function()
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'v', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0],
-        [1, 1, 2, 2, 2, 2, 3, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1]
+        [0, 0, 0, 0, 0, 0, 0, 'v', 0, 0, 2, 2, 2, 0, 0, 2, 0, 'v', 2, 0, 0, 0, 0, 0, 0, 0, 's', 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ];
 
     Map.arrMap2 = [

@@ -2,7 +2,7 @@ var Player = (function (parent) {
     var Player = {};
 
     var CONSTS = {
-        SCREEN_WIDTH : 640,
+        SCREEN_WIDTH: 640,
         SCREEN_HEIGHT: 480
     };
 
@@ -15,14 +15,13 @@ var Player = (function (parent) {
             UP: 38,
             RIGHT: 39,
             DOWN: 40,
-            SPACE: 32,                       
+            SPACE: 32,
 
             isDown: function (keyCode) {
                 return this._pressed[keyCode];
             },
 
             onKeyDown: function (e) {
-                Player.isRunning = true;
                 this._pressed[e.keyCode] = true;
             },
 
@@ -42,31 +41,27 @@ var Player = (function (parent) {
             currentY = Player.y,
             maxJump = 30;
 
-            
-        window.addEventListener('keyup', function(e) {
+
+        window.addEventListener('keyup', function (e) {
             Player.Key.onKeyUp(e);
         }, false);
-            
-        window.addEventListener('keydown', function(e) {
+
+        window.addEventListener('keydown', function (e) {
             Player.Key.onKeyDown(e);
         }, false);
-        
-        
-        function animateLeft()
-        {
-                Player.x -= velocityX;
+
+
+        function animateLeft() {
+            Player.x -= velocityX;
         }
-        function animateUp()
-        {
-                Player.y -= velocityY;
+        function animateUp() {
+            Player.y -= velocityY;
         }
-        function animateRight()
-        {
-                Player.x += velocityX;
+        function animateRight() {
+            Player.x += velocityX;
         }
-        function animateDown()
-        {
-                Player.y += velocityY;
+        function animateDown() {
+            Player.y += velocityY;
         }
 
         function animateJump() {
@@ -77,16 +72,17 @@ var Player = (function (parent) {
             animateUp()
         }
         if (Player.Key.isDown(Player.Key.LEFT)) {
+            Player.isRunning = true;
             animateLeft()
         }
         if (Player.Key.isDown(Player.Key.RIGHT)) {
+            Player.isRunning = true;
             animateRight()
         }
         if (Player.Key.isDown(Player.Key.DOWN)) {
             animateDown()
         }
         if (Player.Key.isDown(Player.Key.SPACE)) {
-            console.log('space')
             this.hasJumped = true;
             this.grounded = false;
         }
@@ -94,7 +90,6 @@ var Player = (function (parent) {
         parent.jump.call(this);
         parent.gravity.call(this);
         parent.accelerate.call(Player);
-        console.log(Player.runVel);
     };
 
 
