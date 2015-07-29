@@ -12,7 +12,7 @@ var Character = (function (parent) {
         this.hasJumped = false;
         this.grounded = true;
 
-        this.jumpVel = 0;
+        this.jumpVel = GameConsts.jumpVel;
 
         return this;
     };

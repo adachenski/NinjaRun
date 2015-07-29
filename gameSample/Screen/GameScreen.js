@@ -71,7 +71,7 @@ var GameScreen = (function(parent)
 
     function updateMap()
     {
-        GameScreen.layers["earthLayer"].removeChildren();
+         GameScreen.layers["earthLayer"].removeChildren();
 
         for(var i = 0; i < gameMap.mapTilesObjs.length; i++)
         {
