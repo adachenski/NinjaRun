@@ -10,7 +10,7 @@ var Screen = (function () {
     {
         this.stage = new Kinetic.Stage({
             container: 'screen-container',
-            width: 600,
+            width: 700,
             height: 480
         });
 

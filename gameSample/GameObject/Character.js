@@ -11,14 +11,10 @@ var Character = (function (parent) {
         parent.init.call(this, x, y, w, h);
         this.hasJumped = false;
         this.grounded = true;
-<<<<<<< HEAD
-        this.runVel = GameContants.runVel;
-        this.maxRunVel = GameContants.maxRunVel;
-        this.jumpVel = GameContants.jumpVel;
-=======
 
+        this.runVel = GameConsts.runVel;
+        this.maxRunVel = GameConsts.maxRunVel;
         this.jumpVel = GameConsts.jumpVel;
->>>>>>> nickBranch
 
         return this;
     };
@@ -39,21 +35,11 @@ var Character = (function (parent) {
 
         if(this.hasJumped == true && this.grounded == false)
         {
-            //this.y -= 3;
-            //console.log('DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-            //this.hasJumped = false;
-            //debugger;
-            this.jumpVel -= 5;
+            this.jumpVel -= 10;
 
-            if(this.jumpVel <= -50) {
+            if(this.jumpVel <= -70) {
                 this.hasJumped = false;
             }
-
-            //setTimeout(function() {
-            //    jumpSpeed = 0;
-            //    console.log('BACK')
-            //    this.hasJumped = false;
-            //}, 500);
         }
 
         if(this.hasJumped == false && this.grounded == false) {
