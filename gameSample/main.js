@@ -6,5 +6,6 @@
 
 (function run()
 {
+
     var SM = Object.create(ScreenManager).init().update();
 })();

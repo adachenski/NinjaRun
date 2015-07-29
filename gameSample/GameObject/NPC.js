@@ -24,4 +24,4 @@ var NPC = (function(parent)
     };
 
     return NPC;
-})(GameObject);
+})(Character);

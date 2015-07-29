@@ -9,7 +9,7 @@ var RenderEngine = (function () {
         return this;
     };
 
-    RenderEngine.addSprite = function (path, x, y, w, h)
+    RenderEngine.addSprite = function (path, x, y, w, h, sX)
     {
         var imgObj = new Image(),
             sprite;
@@ -20,7 +20,9 @@ var RenderEngine = (function () {
             y: y,
             image: imgObj,
             width: w,
-            height: h
+            height: h,
+            startX: sX
+            //draggable: true
         });
 
         return sprite;
@@ -78,6 +80,11 @@ var RenderEngine = (function () {
         return layers;
     };
 
+    RenderEngine.addToExistingLayer = function(key)
+    {
+
+    };
+
     RenderEngine.addAnimation = function()
     {
 
@@ -93,7 +100,6 @@ var RenderEngine = (function () {
 
     RenderEngine.render = function(screen)
     {
-
         screen.stage.draw();
     };
 
