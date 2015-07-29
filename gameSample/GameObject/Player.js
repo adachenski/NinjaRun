@@ -15,27 +15,19 @@ var Player = (function (parent) {
             UP: 38,
             RIGHT: 39,
             DOWN: 40,
-            SPACE: 32,
-            
-            isDown: function(keyCode) {
-                return this._pressed[keyCode];
-            },
-            
-            onKeyDown: function(e) {
-                this._pressed[e.keyCode] = true;
-            },
-
+            SPACE: 32,                       
 
             isDown: function (keyCode) {
                 return this._pressed[keyCode];
             },
 
             onKeyDown: function (e) {
+                Player.isRunning = true;
                 this._pressed[e.keyCode] = true;
             },
 
             onKeyUp: function (e) {
-
+                Player.isRunning = false;
                 delete this._pressed[e.keyCode];
             }
         };
@@ -44,7 +36,7 @@ var Player = (function (parent) {
     };
 
     Player.update = function () {
-        var velocityX = 5,
+        var velocityX = this.runVel,
             velocityY = 10,
             currentX = Player.x,
             currentY = Player.y,
@@ -71,22 +63,11 @@ var Player = (function (parent) {
         function animateRight()
         {
                 Player.x += velocityX;
-
         }
         function animateDown()
         {
-
                 Player.y += velocityY;
-
         }
-
-        window.addEventListener('keyup', function (e) {
-            Player.Key.onKeyUp(e);
-        }, false);
-
-        window.addEventListener('keydown', function (e) {
-            Player.Key.onKeyDown(e);
-        }, false);
 
         function animateJump() {
 
@@ -112,7 +93,8 @@ var Player = (function (parent) {
         //console.log('_________________',this.hasJumped, Player.grounded)
         parent.jump.call(this);
         parent.gravity.call(this);
-
+        parent.accelerate.call(Player);
+        console.log(Player.runVel);
     };
 
 

@@ -7,8 +7,7 @@ var GameScreen = (function(parent)
 {
     var GameScreen = {},
         player,
-        ivoNPC,
-        donchoNPC,
+        ivoNPC, donchoNPC, npcWinCounter,
         renderer,
         monsterSprite, mapSprite, ivoSprite, donchoSprite,
         gameMap,
@@ -28,7 +27,8 @@ var GameScreen = (function(parent)
         renderer = Object.create(RenderEngine).init();
         ivoNPC = Object.create(NPC).init(210, 300, 90, 100);
         donchoNPC = Object.create(NPC).init(140, 380, 90, 100);
-
+        npcWinCounter = 0;
+        
         gameMap = Object.create(Map).init(0, 0, 3000, 2000);
         camera = Object.create(Camera).init(0, 0, /*viewPort W and H*/ 700, 480, gameMap.mapRect.width, gameMap.mapRect.height);
         collisionE = Object.create(Collision).init();
@@ -48,6 +48,7 @@ var GameScreen = (function(parent)
 
     GameScreen.update = function()
     {
+        
         player.update();
         gameMap.updateMap(camera);
         ivoNPC.update();

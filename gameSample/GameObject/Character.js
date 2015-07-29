@@ -11,7 +11,8 @@ var Character = (function (parent) {
         parent.init.call(this, x, y, w, h);
         this.hasJumped = false;
         this.grounded = true;
-
+        this.isRunning = false;
+        
         this.runVel = GameConsts.runVel;
         this.maxRunVel = GameConsts.maxRunVel;
         this.jumpVel = GameConsts.jumpVel;
@@ -26,11 +27,6 @@ var Character = (function (parent) {
 
     Character.jump = function()
     {
-        //console.log('==',this.hasJumped)
-        //console.log('_____________________________________________')
-
-        //console.log('===', this.y, this.hasJumped, this.grounded);
-
         this.y += this.jumpVel;
 
         if(this.hasJumped == true && this.grounded == false)
@@ -52,6 +48,16 @@ var Character = (function (parent) {
         }
       //  if(this.grounded == true) this.jumpSpeed = 0;
     };
+    
+    Character.accelerate = function()
+    {
+        if(this.isRunning) {
+            console.log("vlizame i tichame", this.runVel);
+            if(this.runVel <= this.maxRunVel) {
+                this.runVel += 0.2;
+            }
+        } else this.runVel = GameConsts.runVel;
+    }
 
     return Character;
 })(GameObject);

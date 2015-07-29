@@ -10,13 +10,11 @@ var NPC = (function(parent)
     {
         parent.init.call(this, x, y, w, h);
 
-
-
         return this;
     };
 
     NPC.update = function()
-    {   
+    {
         this.x += this.runVel;
     };
 
