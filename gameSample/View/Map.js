@@ -12,11 +12,32 @@ var Map = (function()
         this.mapTilesSprites = [];
         this.mapTilesObjs = [];
 
+        this.currentMapArr = [];
+
         return this;
     };
 
+    Map.updateMap = function(camera) {
+        GameScreen.layers["earthLayer"].removeChildren();
 
-    Map.array = [
+        for (var i = 0; i < this.mapTilesObjs.length; i++) {
+            if (this.mapTilesObjs[i].x >= camera.viewX &&
+                this.mapTilesObjs[i].x < camera.viewX + camera.viewW &&
+                this.mapTilesObjs[i].y > camera.viewY &&
+                this.mapTilesObjs[i].y < camera.viewY + camera.viewW) {
+                this.mapTilesSprites[i].setX(this.mapTilesObjs[i].x - camera.viewX);
+                this.mapTilesSprites[i].setY(this.mapTilesObjs[i].y - camera.viewY);
+                GameScreen.layers["earthLayer"].add(this.mapTilesSprites[i]);
+            }
+            else {
+                this.mapTilesSprites[i].setY(this.mapTilesObjs[i].y);
+                this.mapTilesSprites[i].setX(this.mapTilesObjs[i].x);
+            }
+        }
+    }
+
+
+    Map.arrMap1 = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -32,6 +53,9 @@ var Map = (function()
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ];
 
+    Map.arrMap2 = [
+
+    ];
 
     return Map;
 })();
