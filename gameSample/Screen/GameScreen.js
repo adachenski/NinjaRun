@@ -6,7 +6,7 @@
 var GameScreen = (function(parent)
 {
     var GameScreen = {},
-        player,
+        player = Object.create(Player).init(100, 100, 50, 40),
         inputHandler = Object.create(InputHandlerEngine).init(),
         renderer = Object.create(RenderEngine).init(),
         monsterSprite,
@@ -19,6 +19,7 @@ var GameScreen = (function(parent)
         tryObj = {x: 700, y: 400, w:50, h: 50},
         collisionE,
         npc1;
+
 
     GameScreen.loadGraphics = function() {
         //console.log('loading graphics of the GameScreen');
@@ -48,6 +49,14 @@ var GameScreen = (function(parent)
 
     GameScreen.update = function()
     {
+        var layerToUpdate = this.layers["monsterLayer"],
+            maximalX = this.stage.getWidth(),
+            minimalX = 0,
+            maximalY = this.stage.getHeight(),
+            minimalY = 0;
+          
+        player.update();
+
         var layerToUpdate = this.layers["monsterLayer"];
 
         handlePlayerGroundColl();
@@ -61,12 +70,10 @@ var GameScreen = (function(parent)
         mapSprite.setX(-camera.viewX);
         mapSprite.setY(-camera.viewY);
 
-
         renderer.render(this);
         //renderer.animate(player.x, player.y, layerToUpdate);
 
         parent.update.call(this);
-        playerMoves = inputHandler.handleKeyboardInput();
     };
 
     function updateMap()
@@ -127,9 +134,11 @@ var GameScreen = (function(parent)
     }
 
     function createSprites() {
+        monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", player.x, player.y);
         mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, 2000, 1000);
-        monsterSprite = renderer.createBlobSprite("SpriteSheets/monster.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
+        monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
         trySprite = renderer.addSprite("SpriteSheets/tweety.png", 700, 300, 150, 150, 700);
+
     }
 
     function createLayers() {

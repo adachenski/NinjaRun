@@ -19,6 +19,7 @@ var InputHandlerEngine = (function InputHandlerEngine(){
 			});
 			//console.log(moves)
 			return moves;
+
 		},
 		handleMouseInput: function()
 		{
