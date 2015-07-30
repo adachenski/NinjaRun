@@ -31,6 +31,8 @@ var Player = (function (parent) {
             }
         };
 
+        this.collisionDirection = '';
+
         return this;
     };
 
@@ -68,28 +70,34 @@ var Player = (function (parent) {
 
         }
 
-        if (Player.Key.isDown(Player.Key.UP)) {
+        if (Player.Key.isDown(Player.Key.UP) && this.collisionDirection.indexOf('top') == -1) {
             animateUp()
         }
-        if (Player.Key.isDown(Player.Key.LEFT)) {
-            Player.isRunning = true;
+        if (Player.Key.isDown(Player.Key.LEFT) && this.collisionDirection.indexOf('left') == -1) {
             animateLeft()
         }
-        if (Player.Key.isDown(Player.Key.RIGHT)) {
-            Player.isRunning = true;
+        if (Player.Key.isDown(Player.Key.RIGHT) && this.collisionDirection.indexOf('right') == -1) {
             animateRight()
         }
         if (Player.Key.isDown(Player.Key.DOWN)) {
             animateDown()
         }
         if (Player.Key.isDown(Player.Key.SPACE)) {
+            console.log('space')
             this.hasJumped = true;
             this.grounded = false;
+            this.startJumping = true;
+
         }
-        //console.log('_________________',this.hasJumped, Player.grounded)
-        parent.jump.call(this);
-        parent.gravity.call(this);
-        parent.accelerate.call(Player);
+        if(this.startJumping)
+        {
+            parent.jump.call(this);
+        }
+
+        if(this.collisionDirection.indexOf('bot') == -1)
+        {
+            parent.gravity.call(this);
+        }
     };
 
 

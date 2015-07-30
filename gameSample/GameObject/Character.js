@@ -12,6 +12,7 @@ var Character = (function (parent) {
         this.hasJumped = false;
         this.grounded = true;
         this.isRunning = false;
+        this.startJumping = false;
         
         this.runVel = GameConsts.runVel;
         this.maxRunVel = GameConsts.maxRunVel;

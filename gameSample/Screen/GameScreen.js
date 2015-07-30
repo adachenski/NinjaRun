@@ -24,7 +24,7 @@ var GameScreen = (function(parent)
     {
 
         parent.init.call(this);
-        player = Object.create(Player).init(350, 100, 90, 100);
+        player = Object.create(Player).init(350, 100, 60, 80);
         renderer = Object.create(RenderEngine).init();
         ivoNPC = Object.create(NPC).init(210, 300, 90, 100);
         donchoNPC = Object.create(NPC).init(140, 380, 90, 100);
@@ -99,8 +99,9 @@ var GameScreen = (function(parent)
     }
 
     function handlePlayerGroundColl() {
+        player.collisionDirection = '';
         for (var i = 0, len = gameMap.mapTilesObjs.length; i < len; i++) {
-            collisionE.collision(player, gameMap.mapTilesObjs[i]);
+            player.collisionDirection += (collisionE.ifCollidingWithTile(player, gameMap.mapTilesObjs[i]));
             collisionE.collision(ivoNPC, gameMap.mapTilesObjs[i]);
             collisionE.collision(donchoNPC, gameMap.mapTilesObjs[i]);
         }
