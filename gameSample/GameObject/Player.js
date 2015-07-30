@@ -82,6 +82,7 @@ var Player = (function (parent) {
             animateDown()
         }
         if (Player.Key.isDown(Player.Key.SPACE) && Player.grounded == true) {
+            jumpSound.playclip();
             this.grounded = false;
             this.hasJumped = true;
             this.startJumping = true;

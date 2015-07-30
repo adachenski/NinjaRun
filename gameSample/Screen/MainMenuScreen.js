@@ -160,6 +160,7 @@ var MainMenuScreen = (function (parent) {
 
         function setMouseEventIn(textPlay, mouseEvent, addPlayLear) {
             textPlay.on(mouseEvent, function () {
+                clicksound.playclip();
                 this.fontSize(45);
                 this.fill('orange');
                 this.stroke('red'),
@@ -174,6 +175,8 @@ var MainMenuScreen = (function (parent) {
         });
 
         addPlayLear.on('click', function () {
+            var video = document.getElementById('the-video');
+            video.src="";
             ScreenManager.changeToScreen(SelectMapScreen);
         });
         renderE.render(this);
