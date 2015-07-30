@@ -19,6 +19,11 @@ var Screen = (function () {
         return this;
     };
 
+    Screen.findInLayers = function(layerToFind, type)
+    {
+        return this.layers[layerToFind].find(type)[0];
+    };
+
     Screen.loadGraphics = function () {
 
     };

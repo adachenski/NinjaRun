@@ -28,7 +28,7 @@ var ScreenManager = (function () {
 
     ScreenManager.init = function () {
 
-        currentScreen = GameScreen;
+        currentScreen = WinScreen;
 
         currentScreen.init();
         currentScreen.loadGraphics();
@@ -61,6 +61,8 @@ var ScreenManager = (function () {
 
     ScreenManager.changeToScreen = function (Screen) {
         currentScreen = Screen;
+        currentScreen.init();
+
     };
 
     function clearCanvas(ctx) {
