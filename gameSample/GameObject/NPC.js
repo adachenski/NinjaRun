@@ -59,6 +59,11 @@ var NPC = (function(parent)
     {
         parent.speedUp.call(this);
     }
+    
+    NPC.freeze = function()
+    {
+        parent.freeze.call(this);
+    }
 
     NPC.render = function(ctx)
     {

@@ -110,6 +110,11 @@ var Player = (function (parent) {
     {
         parent.speedUp.call(this);
     }
+    
+    Player.freeze = function()
+    {
+        parent.freeze.call(this);
+    }
 
     return Player;
 })(Character);

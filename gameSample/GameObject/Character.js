@@ -80,11 +80,16 @@ var Character = (function (parent) {
     {
         this.runVel = this.speedRunVel;
     }
+    
+    Character.freeze = function()
+    {
+        this.runVel = 0;
+    }
 
     Character.collideWith = function(obj2)
     {
         parent.collideWith.call(this, obj2);    
     }
-
+    
     return Character;
 })(GameObject);

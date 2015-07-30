@@ -9,8 +9,9 @@ var GameScreen = (function(parent)
         camera,
         trySprite,
         tryObj = {x: 700, y: 400, w:50, h: 50},
-        collisionE;
-
+        collisionE,
+        characters = [];
+        
     GameScreen.loadGraphics = function() {
         //console.log('loading graphics of the GameScreen');
     };
@@ -23,6 +24,10 @@ var GameScreen = (function(parent)
         ivoNPC = Object.create(NPC).init(210, 300, 90, 100);
         donchoNPC = Object.create(NPC).init(140, 380, 90, 100);
         npcWinCounter = 0;
+        
+        characters.push(player);
+        characters.push(ivoNPC);
+        characters.push(donchoNPC);
         
         gameMap = Object.create(Map).init(0, 0, 3000, 2000);
         camera = Object.create(Camera).init(0, 0, /*viewPort W and H*/ 700, 480, gameMap.mapRect.width, gameMap.mapRect.height);
@@ -170,6 +175,14 @@ var GameScreen = (function(parent)
                         character.slow();
                         console.log(character.runVel);
                         break;
+                    case 'freezePotion':
+                        gameMap.mapPotionsObjs.splice(i, 1);
+                        gameMap.mapPotionsSprites.splice(i,1);
+                        characters.forEach(function(char){
+                           if(character != char){
+                               char.freeze();
+                           } 
+                        });
                 }
                 break;
             }
