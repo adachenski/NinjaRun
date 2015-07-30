@@ -28,7 +28,7 @@ var ScreenManager = (function () {
 
     ScreenManager.init = function () {
 
-        currentScreen = WinScreen;
+        currentScreen = MainMenuScreen;
 
         currentScreen.init();
         currentScreen.loadGraphics();

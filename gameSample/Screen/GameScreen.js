@@ -62,7 +62,10 @@ var GameScreen = (function(parent)
         handlePlayerGroundColl();
         updateNPCSprite();
 
+        checkIfWin(player);
+
         renderer.render(this);
+
         //renderer.animate(player.x, player.y, layerToUpdate);
         //console.log('=======', player.x, player.y)
         //mapSprite.crop({x: camera.viewX, y: camera.viewY, width: camera.viewW, height: camera.viewH});
@@ -131,6 +134,13 @@ var GameScreen = (function(parent)
         obj.x < camera.viewX + camera.viewW &&
         obj.y > camera.viewY &&
         obj.y < camera.viewY + camera.viewH)
+    }
+
+    function checkIfWin(obj) {
+        console.log('...')
+        if(obj.x > gameMap.endPoint.x) {
+            ScreenManager.changeToScreen(WinScreen);
+        }
     }
 
     return GameScreen;

@@ -13,17 +13,17 @@ var WinScreen = (function (parent) {
     WinScreen.init = function () {
         parent.init.call(this);
 
+        this.loadGraphics();
+
         return this;
     };
 
     WinScreen.update = function () {
-
         var newGameButt = parent.findInLayers.call(this, "newGameButton", "Image");
-
         newGameButt.on('mouseup', function () {
             if (clickCounter++ == 1) ScreenManager.changeToScreen(GameScreen);
         });
-
+        clickCounter = 0;
 
 
         renderE.render(this);

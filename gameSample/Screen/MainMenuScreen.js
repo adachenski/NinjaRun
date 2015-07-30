@@ -25,8 +25,6 @@ var MainMenuScreen = (function (parent) {
             if(clickCounter++ == 1) ScreenManager.changeToScreen(GameScreen);
         });
 
-
-
         renderE.render(this);
     };
 

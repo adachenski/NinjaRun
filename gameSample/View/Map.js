@@ -20,6 +20,8 @@ var Map = (function()
 
         this.currentMapArr = [];
 
+        this.endPoint = {x: 2000, y:300, w: 100};
+
         return this;
     };
 

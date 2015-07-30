@@ -67,22 +67,22 @@ var Camera = (function() {
 
         this.viewPortRect.set(this.viewX, this.viewY);
 
-        if(!this.viewPortRect.ifWithin(this.worldRect))
-        {
-            //console.log("inside")
-            if(this.viewPortRect.left < this.worldRect.left) {
-                this.viewX = this.worldRect.left;
-            }
-            if (this.viewPortRect.top < this.worldRect.top) {
-                this.viewY = this.worldRect.top;
-            }
-            if (this.viewPortRect.right > this.worldRect.right) {
-                this.viewX = this.worldRect.right - this.viewW;
-            }
-            if (this.viewPortRect.bottom > this.worldRect.bottom) {
-                this.viewY = this.worldRect.bottom - this.viewH;
-            }
-        }
+        //if(!this.viewPortRect.ifWithin(this.worldRect))
+        //{
+        //    //console.log("inside")
+        //    if(this.viewPortRect.left < this.worldRect.left) {
+        //        this.viewX = this.worldRect.left;
+        //    }
+        //    if (this.viewPortRect.top < this.worldRect.top) {
+        //        this.viewY = this.worldRect.top;
+        //    }
+        //    if (this.viewPortRect.right > this.worldRect.right) {
+        //        this.viewX = this.worldRect.right - this.viewW;
+        //    }
+        //    if (this.viewPortRect.bottom > this.worldRect.bottom) {
+        //        this.viewY = this.worldRect.bottom - this.viewH;
+        //    }
+        //}
     };
 
 

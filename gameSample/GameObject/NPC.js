@@ -23,12 +23,9 @@ var NPC = (function(parent)
         
             for(var j = 0, len = map.length; j < len; j += 1) {
                 if(map[j].type == 'brick') {
-                    console.log("tuhla e")
                     if((this.x + this.w | 0) === map[j].x) {
-                        console.log("vlizame", this.x, map[j].x);
                         this.hasJumped = true;
                         this.grounded = false;
-                        
                     }
                 }
             }
