@@ -22,6 +22,7 @@ var GameScreen = (function(parent)
 
     GameScreen.init = function()
     {
+
         parent.init.call(this);
         player = Object.create(Player).init(350, 100, 90, 100);
         renderer = Object.create(RenderEngine).init();

@@ -1,0 +1,13 @@
+canvas {
+    display: inline-block;
+}
+#the-video{
+    position:fixed ;
+    top: -20%;
+    left: 0%;
+    z-index: -100;
+    background-size: cover;
+    transition: 2s opacity;
+    opacity: 1;
+    object-fit: contain;
+}
