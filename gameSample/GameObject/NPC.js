@@ -10,26 +10,36 @@ var NPC = (function(parent)
     {
         parent.init.call(this, x, y, w, h);
         this.isRunning = true;
-        
+        this.collisionDirection = '';
+           
         return this;
     };
 
     NPC.update = function(map)
     {
-        this.x += 5;
+        if (this.collisionDirection.indexOf('bot') == -1) {
+            parent.gravity.call(this);
+        }
         
-        parent.gravity.call(this);
+        if(this.collisionDirection.indexOf('right') == -1) {
+            this.x += 5;
+        }
+        
         parent.accelerate.call(this);
         
-            for(var j = 0, len = map.length; j < len; j += 1) {
-                if(map[j].type == 'brick') {
-                    if((this.x + this.w | 0) === map[j].x) {
-                        this.hasJumped = true;
-                        this.grounded = false;
-                    }
+        for(var j = 0, len = map.length; j < len; j += 1) {
+            if(map[j].type == 'brick') {
+                if((this.x + this.w | 0) === map[j].x) {
+                    this.hasJumped = true;
+                    this.grounded = false;
+                    this.startJumping = true;
                 }
             }
-        parent.jump.call(this);
+        }
+        
+        if (this.startJumping) {
+            parent.jump.call(this);
+        }
     };
 
     NPC.render = function(ctx)

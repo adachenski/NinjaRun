@@ -1,8 +1,3 @@
-/**
- * Created by Nick on 21/7/2015.
- */
-
-
 var GameScreen = (function(parent)
 {
     var GameScreen = {},
@@ -100,10 +95,12 @@ var GameScreen = (function(parent)
 
     function handlePlayerGroundColl() {
         player.collisionDirection = '';
+        ivoNPC.collisionDirection = '';
+        donchoNPC.collisionDirection = '';
         for (var i = 0, len = gameMap.mapTilesObjs.length; i < len; i++) {
             player.collisionDirection += (collisionE.ifCollidingWithTile(player, gameMap.mapTilesObjs[i]));
-            collisionE.collision(ivoNPC, gameMap.mapTilesObjs[i]);
-            collisionE.collision(donchoNPC, gameMap.mapTilesObjs[i]);
+            ivoNPC.collisionDirection += (collisionE.ifCollidingWithTile(ivoNPC, gameMap.mapTilesObjs[i]));
+            donchoNPC.collisionDirection += (collisionE.ifCollidingWithTile(donchoNPC, gameMap.mapTilesObjs[i]));
         }
 
         //test code

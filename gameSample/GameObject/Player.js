@@ -38,10 +38,7 @@ var Player = (function (parent) {
 
     Player.update = function () {
         var velocityX = this.runVel,
-            velocityY = 10,
-            currentX = Player.x,
-            currentY = Player.y,
-            maxJump = 30;
+            velocityY = 10;
 
 
         window.addEventListener('keyup', function (e) {
@@ -74,16 +71,17 @@ var Player = (function (parent) {
             animateUp()
         }
         if (Player.Key.isDown(Player.Key.LEFT) && this.collisionDirection.indexOf('left') == -1) {
+            Player.isRunning = true;
             animateLeft()
         }
         if (Player.Key.isDown(Player.Key.RIGHT) && this.collisionDirection.indexOf('right') == -1) {
+            Player.isRunning = true;
             animateRight()
         }
         if (Player.Key.isDown(Player.Key.DOWN)) {
             animateDown()
         }
         if (Player.Key.isDown(Player.Key.SPACE)) {
-            console.log('space')
             this.hasJumped = true;
             this.grounded = false;
             this.startJumping = true;
@@ -98,7 +96,7 @@ var Player = (function (parent) {
         {
             parent.gravity.call(this);
         }
-
+        
         parent.accelerate.call(this);
     };
 
