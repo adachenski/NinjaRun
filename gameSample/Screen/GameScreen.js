@@ -128,7 +128,7 @@ var GameScreen = (function(parent)
     }
 
     function ifWithinViewport(obj) {
-        return (obj.x > camera.viewX &&
+        return (obj.x + obj.w > camera.viewX &&
         obj.x < camera.viewX + camera.viewW &&
         obj.y > camera.viewY &&
         obj.y < camera.viewY + camera.viewH)

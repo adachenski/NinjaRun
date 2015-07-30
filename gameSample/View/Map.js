@@ -47,7 +47,7 @@ var Map = (function()
         GameScreen.layers[layer].removeChildren();
 
         for (var i = 0; i < mapObjs.length; i++) {
-            if (mapObjs[i].x >= camera.viewX &&
+            if (mapObjs[i].x + mapObjs[i].w >= camera.viewX &&
                 mapObjs[i].x < camera.viewX + camera.viewW &&
                 mapObjs[i].y > camera.viewY &&
                 mapObjs[i].y < camera.viewY + camera.viewW)
