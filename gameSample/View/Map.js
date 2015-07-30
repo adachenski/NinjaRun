@@ -113,6 +113,10 @@ var Map = (function()
                     potionSpriteToAdd = renderer.addSprite(GameConsts.freezePotion, j * this.potionW, this.potionH, this.potionW, this.potionH);
                     pushIntoMapPotionObjs.call(this, (j * this.potionW) * 2, (i * this.potionH) * 2, this.potionW, this.potionW, "freezePotion");
                 }
+                else if(this.currentMapArr[i][j] == 'b') {
+                    potionSpriteToAdd = renderer.addSprite(GameConsts.setBackPotion, j * this.potionW, this.potionH, this.potionW, this.potionH);
+                    pushIntoMapPotionObjs.call(this, (j * this.potionW) * 2, (i * this.potionH) * 2, this.potionW, this.potionW, "setBackPotion");
+                }
                 if (tileSpriteToAdd !== null) this.mapTilesSprites.push(tileSpriteToAdd);
                 if (potionSpriteToAdd !== null) this.mapPotionsSprites.push(potionSpriteToAdd);
             }
@@ -127,7 +131,7 @@ var Map = (function()
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'f', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 'b', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 'v', 0, 0, 2, 2, 2, 0, 0, 2, 0, 'v', 2, 0, 0, 0, 0, 0, 0, 0, 's', 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ];

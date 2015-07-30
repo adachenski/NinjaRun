@@ -15,6 +15,7 @@ var GameConsts = {
     velocityPotion: "SpriteSheets/velocityPotion.png",
     slowerEnemiesPotion: "SpriteSheets/slowerEnemiesPotion.png",
     freezePotion: "SpriteSheets/freezePotion.png",
+    setBackPotion: "SpriteSheets/setPlayersBack.png",
 
     chosenMap: "",
 
