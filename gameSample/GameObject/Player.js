@@ -37,11 +37,7 @@ var Player = (function (parent) {
     };
 
     Player.update = function () {
-        var velocityX = this.runVel,
-            velocityY = 10;
-
-
-        window.addEventListener('keyup', function (e) {
+         window.addEventListener('keyup', function (e) {
             Player.Key.onKeyUp(e);
         }, false);
 
@@ -51,37 +47,35 @@ var Player = (function (parent) {
 
 
         function animateLeft() {
-            Player.x -= velocityX;
-        }
-        function animateUp() {
-            Player.y -= velocityY;
+            this.x -= this.runVel;
         }
         function animateRight() {
-            Player.x += velocityX;
+            this.x += this.runVel;
         }
-        function animateDown() {
-            Player.y += velocityY;
-        }
-
+        //function animateDown() {
+        //    //Player.y += velocityY;
+        //}
+        //function animateUp() {
+        //    //Player.y -= velocityY;
+        //}
         function animateJump() {
 
         }
 
-        if (Player.Key.isDown(Player.Key.UP) && this.collisionDirection.indexOf('top') == -1) {
+        if (this.Key.isDown(this.Key.UP) && this.collisionDirection.indexOf('top') == -1) {
             animateUp()
         }
-        if (Player.Key.isDown(Player.Key.LEFT) && this.collisionDirection.indexOf('left') == -1) {
-            Player.isRunning = true;
-            animateLeft()
+        if (this.Key.isDown(this.Key.LEFT) && this.collisionDirection.indexOf('left') == -1) {
+            this.isRunning = true;
+            animateLeft.call(this);
         }
-        if (Player.Key.isDown(Player.Key.RIGHT) && this.collisionDirection.indexOf('right') == -1) {
-            Player.isRunning = true;
-            animateRight()
+        if (this.Key.isDown(this.Key.RIGHT) && this.collisionDirection.indexOf('right') == -1) {
+            this.isRunning = true;
+            animateRight.call(this)
         }
-        if (Player.Key.isDown(Player.Key.DOWN)) {
-            animateDown()
-        }
-        if (Player.Key.isDown(Player.Key.SPACE) && Player.grounded == true) {
+
+        if (this.Key.isDown(this.Key.SPACE) && this.grounded == true) {
+            jumpSound.playclip();
             this.grounded = false;
             this.hasJumped = true;
             this.startJumping = true;
@@ -95,10 +89,10 @@ var Player = (function (parent) {
         {
             parent.gravity.call(this);
         }
-
-        if (this.collisionDirection.indexOf('bot') !== -1) {
+        else {
             this.grounded = true;
         }
+
         parent.accelerate.call(this);
     };
 

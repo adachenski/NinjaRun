@@ -102,12 +102,6 @@ var GameScreen = (function(parent)
             ivoNPC.collisionDirection += (collisionE.checkCollide(ivoNPC, gameMap.mapTilesObjs[i]));
             donchoNPC.collisionDirection += (collisionE.checkCollide(donchoNPC, gameMap.mapTilesObjs[i]));
         }
-
-        //test code
-        // if (tryObj.x > camera.viewX && tryObj.x < camera.viewX + camera.viewW) {
-        //     trySprite.setX(700 - camera.viewX);
-        // }
-        // else trySprite.setX(tryObj.x);
     }
     
     function handlePotionsCollision(){
