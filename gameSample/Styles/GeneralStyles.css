@@ -11,3 +11,9 @@ canvas {
     opacity: 1;
     object-fit: contain;
 }
+
+#screen-container {
+    border: 1px solid black;
+    width: 700px;
+    height: 480px
+}
