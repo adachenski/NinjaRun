@@ -22,11 +22,18 @@ var NPC = (function(parent)
         }
         
         if(this.collisionDirection.indexOf('right') == -1) {
-            this.x += 5;
+            this.x += this.runVel;
+        }
+        
+        if(this.collisionDirection.indexOf('right') > -1) {
+            this.hasJumped = true;
+            this.grounded = false;
+            this.startJumping = true;
         }
         
         parent.accelerate.call(this);
         
+        /*
         for(var j = 0, len = map.length; j < len; j += 1) {
             if(map[j].type == 'brick') {
                 if((this.x + this.w | 0) === map[j].x) {
@@ -36,11 +43,22 @@ var NPC = (function(parent)
                 }
             }
         }
+        */
         
         if (this.startJumping) {
             parent.jump.call(this);
         }
     };
+    
+    NPC.slow = function()
+    {
+        parent.slow.call(this);
+    }
+    
+    NPC.speedUp = function()
+    {
+        parent.speedUp.call(this);
+    }
 
     NPC.render = function(ctx)
     {

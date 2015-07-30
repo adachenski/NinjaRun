@@ -103,11 +103,11 @@ var Map = (function()
                 }
                 else if(this.currentMapArr[i][j] == 'v') {
                     potionSpriteToAdd = renderer.addSprite(GameConsts.velocityPotion, j * this.potionW, this.potionH, this.potionW, this.potionH);
-                    pushIntoMapPotionObjs.call(this, (j * this.potionW) * 2, (i * this.potionH) * 2, this.potionW, this.potionW, "velocity");
+                    pushIntoMapPotionObjs.call(this, (j * this.potionW) * 2, (i * this.potionH) * 2, this.potionW, this.potionW, "velocitySpeedPlayer");
                 }
                 else if(this.currentMapArr[i][j] == 's') {
                     potionSpriteToAdd = renderer.addSprite(GameConsts.slowerEnemiesPotion, j * this.potionW, this.potionH, this.potionW, this.potionH);
-                    pushIntoMapPotionObjs.call(this, (j * this.potionW) * 2, (i * this.potionH) * 2, this.potionW, this.potionW, "velocity");
+                    pushIntoMapPotionObjs.call(this, (j * this.potionW) * 2, (i * this.potionH) * 2, this.potionW, this.potionW, "velocitySlowEnemies");
                 }
                 if (tileSpriteToAdd !== null) this.mapTilesSprites.push(tileSpriteToAdd);
                 if (potionSpriteToAdd !== null) this.mapPotionsSprites.push(potionSpriteToAdd);

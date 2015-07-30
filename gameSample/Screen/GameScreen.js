@@ -43,7 +43,7 @@ var GameScreen = (function(parent)
 
     GameScreen.update = function()
     {
-        
+        handlePotionsCollision();
         player.update();
         gameMap.updateMap(camera, "earthLayer", gameMap.mapTilesObjs, gameMap.mapTilesSprites);
         gameMap.updateMap(camera, "potionsLayer", gameMap.mapPotionsObjs, gameMap.mapPotionsSprites);
@@ -55,6 +55,7 @@ var GameScreen = (function(parent)
         mapSprite.setY(-camera.viewY);
 
         handlePlayerGroundColl();
+        
         updateNPCSprite();
 
         winCheck();
@@ -97,9 +98,9 @@ var GameScreen = (function(parent)
         ivoNPC.collisionDirection = '';
         donchoNPC.collisionDirection = '';
         for (var i = 0, len = gameMap.mapTilesObjs.length; i < len; i++) {
-            player.collisionDirection += (collisionE.ifCollidingWithTile(player, gameMap.mapTilesObjs[i]));
-            ivoNPC.collisionDirection += (collisionE.ifCollidingWithTile(ivoNPC, gameMap.mapTilesObjs[i]));
-            donchoNPC.collisionDirection += (collisionE.ifCollidingWithTile(donchoNPC, gameMap.mapTilesObjs[i]));
+            player.collisionDirection += (collisionE.checkCollide(player, gameMap.mapTilesObjs[i]));
+            ivoNPC.collisionDirection += (collisionE.checkCollide(ivoNPC, gameMap.mapTilesObjs[i]));
+            donchoNPC.collisionDirection += (collisionE.checkCollide(donchoNPC, gameMap.mapTilesObjs[i]));
         }
 
         //test code
@@ -107,6 +108,12 @@ var GameScreen = (function(parent)
         //     trySprite.setX(700 - camera.viewX);
         // }
         // else trySprite.setX(tryObj.x);
+    }
+    
+    function handlePotionsCollision(){
+        applyBonuses(player);
+        applyBonuses(ivoNPC);
+        applyBonuses(donchoNPC);
     }
 
     function startSpriteAnims() {
@@ -128,10 +135,14 @@ var GameScreen = (function(parent)
     }
 
     function ifWithinViewport(obj) {
+        /*
         return (obj.x + obj.w > camera.viewX &&
         obj.x < camera.viewX + camera.viewW &&
-        obj.y > camera.viewY &&
+        obj.y + obj.h > camera.viewY &&
         obj.y < camera.viewY + camera.viewH)
+        */
+        
+        return true;
     }
 
     function winCheck()
@@ -143,6 +154,32 @@ var GameScreen = (function(parent)
 
     function ifWin(obj) {
         return (obj.x >= gameMap.finishPoint.x)
+    }
+    
+    function applyBonuses(character) {
+        for(var i = 0, len = gameMap.mapPotionsObjs.length; i < len; i += 1){
+            if(collisionE.checkCollideWithPotions(character, gameMap.mapPotionsObjs[i]) != '')
+            {
+                switch(gameMap.mapPotionsObjs[i].type)
+                {
+                    case 'velocitySpeedPlayer':
+                        gameMap.mapPotionsObjs.splice(i, 1);
+                        gameMap.mapPotionsSprites.splice(i,1);
+                        console.log(character.runVel);
+                        character.speedUp();
+                        console.log(character.runVel);
+                        break;
+                    case 'velocitySlowEnemies':
+                        gameMap.mapPotionsObjs.splice(i, 1);
+                        gameMap.mapPotionsSprites.splice(i,1);
+                        console.log(character.runVel);
+                        character.slow();
+                        console.log(character.runVel);
+                        break;
+                }
+                break;
+            }
+        }
     }
 
     return GameScreen;

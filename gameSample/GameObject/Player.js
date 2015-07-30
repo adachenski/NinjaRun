@@ -102,6 +102,20 @@ var Player = (function (parent) {
         parent.accelerate.call(this);
     };
 
+    Player.slow = function()
+    {
+        parent.slow.call(this);
+    }
+    
+    Player.collideWith = function(obj2)
+    {
+        parent.collideWith.call(this, obj2);    
+    }
+    
+    Player.speedUp = function()
+    {
+        parent.speedUp.call(this);
+    }
 
     return Player;
 })(Character);

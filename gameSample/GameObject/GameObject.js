@@ -39,9 +39,11 @@ var GameObject = (function()
             // NPC top or bottom side is between both the top and down player sides
             if(anotherObjBottomWithinGameObj || anotherObjTopWithinGameObj)
             {
-                alert("Game object collided with another game object");
+                return true;
             }
         }
+        
+        return false;
     };
 
     GameObject.render = function(ctx)

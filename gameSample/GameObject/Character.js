@@ -14,7 +14,11 @@ var Character = (function (parent) {
         this.isRunning = false;
         this.startJumping = false;
         
+        this.accelerationSpeed = GameConsts.accelerationSpeed;
+        this.slowSpeed = GameConsts.slowSpeed;
         this.runVel = GameConsts.runVel;
+        this.slowedRunVel = GameConsts.slowedRunVel;
+        this.speedRunVel = GameConsts.speedRunVel;
         this.maxRunVel = GameConsts.maxRunVel;
         this.jumpVel = GameConsts.jumpVel;
 
@@ -53,9 +57,33 @@ var Character = (function (parent) {
     {
         if(this.isRunning) {
             if(this.runVel <= this.maxRunVel) {
-                this.runVel += 0.2;
+                this.runVel += this.accelerationSpeed;
             }
-        } else this.runVel = GameConsts.runVel;
+        } 
+        else 
+        {
+            this.runVel = GameConsts.runVel;
+        }
+        
+        if(this.runVel > this.maxRunVel)
+        {
+            this.runVel -= this.slowSpeed;
+        }
+    }
+    
+    Character.slow = function()
+    {
+        this.runVel = this.slowedRunVel;
+    }
+    
+    Character.speedUp = function()
+    {
+        this.runVel = this.speedRunVel;
+    }
+
+    Character.collideWith = function(obj2)
+    {
+        parent.collideWith.call(this, obj2);    
     }
 
     return Character;
