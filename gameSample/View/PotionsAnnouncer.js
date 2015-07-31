@@ -27,5 +27,14 @@ var PotionsAnnouncer = (function(){
 		announcer.innerHTML = '';
 	}
 	
+	PotionsAnnouncer.announceWinner = function(winner)
+	{
+		var announcer = document.getElementById('announcer');
+		
+		announcer.innerHTML = '<span id="announcerText">Announcer:</span><br><br>' +
+							  '<span class="playerName">' + winner + '</span>' +
+							  '<span class="playerSpecialy"> won</span>';
+	}
+	
 	return PotionsAnnouncer;
 })();

@@ -1,8 +1,8 @@
 
 var GameConsts = {
     jumpVel: 5,
-    runVel: 5,
-    maxRunVel: 10,
+    runVel: 4,
+    maxRunVel: 7,
     slowedRunVel: 0.3,
     speedRunVel: 15,
     accelerationSpeed: 0.1,
@@ -10,7 +10,9 @@ var GameConsts = {
 
     grassTilePath: "SpriteSheets/grassTile.png",
     waterTilePath: "SpriteSheets/waterTile.png",
-    brickTilePath: "SpriteSheets/brickTile.jpg",
+    brickTilePath: "SpriteSheets/brickTile.png",
+    dirtTilePath: "SpriteSheets/dirtTile.png",
+    finishTile: "SpriteSheets/finishTile.png",
     
     velocityPotion: "SpriteSheets/velocityPotion.png",
     slowerEnemiesPotion: "SpriteSheets/slowerEnemiesPotion.png",
