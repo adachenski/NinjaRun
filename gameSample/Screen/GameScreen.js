@@ -19,10 +19,12 @@ var GameScreen = (function(parent)
     GameScreen.init = function()
     {
         parent.init.call(this);
-        player = Object.create(Player).init(350, 100, 60, 80);
+        
+        player = Object.create(Player).init(350, 100, 60, 80, "You");
+        ivoNPC = Object.create(NPC).init(210, 300, 90, 100, "Ivo");
+        donchoNPC = Object.create(NPC).init(140, 380, 90, 100, "Doncho");
+        
         renderer = Object.create(RenderEngine).init();
-        ivoNPC = Object.create(NPC).init(210, 300, 90, 100);
-        donchoNPC = Object.create(NPC).init(140, 380, 90, 100);
         npcWinCounter = 0;
         
         characters.push(player);
@@ -164,16 +166,14 @@ var GameScreen = (function(parent)
                     case 'velocitySpeedPlayer':
                         gameMap.mapPotionsObjs.splice(i, 1);
                         gameMap.mapPotionsSprites.splice(i,1);
-                        console.log(character.runVel);
                         character.speedUp();
-                        console.log(character.runVel);
+                        console.log(character.name + ' used speed')
                         break;
                     case 'velocitySlowEnemies':
                         gameMap.mapPotionsObjs.splice(i, 1);
                         gameMap.mapPotionsSprites.splice(i,1);
-                        console.log(character.runVel);
                         character.slow();
-                        console.log(character.runVel);
+                        console.log(character.name + ' slowed himself')
                         break;
                     case 'freezePotion':
                         gameMap.mapPotionsObjs.splice(i, 1);
@@ -183,6 +183,7 @@ var GameScreen = (function(parent)
                                char.freeze();
                            } 
                         });
+                        console.log(character.name + ' used freeze')
                         break;
                      case 'setBackPotion':
                         gameMap.mapPotionsObjs.splice(i, 1);
@@ -192,6 +193,7 @@ var GameScreen = (function(parent)
                                char.setBack();
                            } 
                         });
+                        console.log(character.name + ' used pull')
                         break;
                 }
                 break;

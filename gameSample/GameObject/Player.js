@@ -6,9 +6,9 @@ var Player = (function (parent) {
         SCREEN_HEIGHT: 480
     };
 
-    Player.init = function (x, y, w, h) {
+    Player.init = function (x, y, w, h, name) {
 
-        parent.init.call(Player, x, y, w, h);
+        parent.init.call(Player, x, y, w, h, name);
         Player.Key = {
             _pressed: {},
             LEFT: 37,

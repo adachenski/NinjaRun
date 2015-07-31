@@ -6,9 +6,9 @@ var Character = (function (parent) {
 
     var Character = {};
 
-    Character.init = function(x, y, w, h)
+    Character.init = function(x, y, w, h, name)
     {
-        parent.init.call(this, x, y, w, h);
+        parent.init.call(this, x, y, w, h, name);
         this.hasJumped = false;
         this.grounded = true;
         this.isRunning = false;

@@ -6,12 +6,13 @@ var GameObject = (function()
 {
     var GameObject = {};
 
-    GameObject.init = function(x, y, w, h)
+    GameObject.init = function(x, y, w, h, name)
     {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
+        this.name = name || "Unnamed";
 
         return this;
     };

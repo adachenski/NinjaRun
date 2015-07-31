@@ -6,9 +6,9 @@ var NPC = (function(parent)
 {
     var NPC = {};
 
-    NPC.init = function(x, y, w, h)
+    NPC.init = function(x, y, w, h, name)
     {
-        parent.init.call(this, x, y, w, h);
+        parent.init.call(this, x, y, w, h, name);
         this.isRunning = true;
         this.collisionDirection = '';
            
