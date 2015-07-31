@@ -20,12 +20,14 @@ var SelectMapScreen = (function (parent) {
     };
 
     SelectMapScreen.update = function () {
+        console.log('---')
         map1Sprite.on('mouseup', function () {
             GameConsts.chosenMap = "map1";
             ScreenManager.changeToScreen(GameScreen);
         });
         map2Sprite.on('mouseup', function () {
             GameConsts.chosenMap = "map2";
+            console.log('MAP 2222222');
             ScreenManager.changeToScreen(GameScreen);
         });
 

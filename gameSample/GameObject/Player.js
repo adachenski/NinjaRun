@@ -81,11 +81,10 @@ var Player = (function (parent) {
         if (Player.Key.isDown(Player.Key.DOWN)) {
             animateDown()
         }
-        if (Player.Key.isDown(Player.Key.SPACE)) {
-            this.hasJumped = true;
+        if (Player.Key.isDown(Player.Key.SPACE) && Player.grounded == true) {
             this.grounded = false;
+            this.hasJumped = true;
             this.startJumping = true;
-
         }
         if(this.startJumping)
         {
@@ -96,7 +95,10 @@ var Player = (function (parent) {
         {
             parent.gravity.call(this);
         }
-        
+
+        if (this.collisionDirection.indexOf('bot') !== -1) {
+            this.grounded = true;
+        }
         parent.accelerate.call(this);
     };
 

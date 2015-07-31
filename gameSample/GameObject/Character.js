@@ -40,12 +40,11 @@ var Character = (function (parent) {
         }
 
         if(this.hasJumped == false && this.grounded == false) {
-        //    this.jumpSpeed += 2;
             this.jumpVel = 0;
         }
         if(this.jumpVel > 20) {
             this.jumpVel = 0;
-            this.grounded = true;
+            //this.grounded = true;
         }
       //  if(this.grounded == true) this.jumpSpeed = 0;
     };

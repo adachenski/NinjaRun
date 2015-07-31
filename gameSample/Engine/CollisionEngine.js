@@ -51,6 +51,7 @@ var Collision = (function() {
         {
             if((obj1Left >= obj2Left && obj1Left <= obj2Right) || (obj1Right >= obj2Left && obj1Right <= obj2Right))
             {
+                //obj1.grounded = true;
                 return "bot";
             }
         }

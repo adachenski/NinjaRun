@@ -20,6 +20,7 @@ var Map = (function()
 
         this.currentMapArr = [];
         this.finishPoint = {};
+        setCurrentMapArr.call(this);
 
 
         return this;
@@ -27,16 +28,8 @@ var Map = (function()
 
     function setCurrentMapArr()
     {
-        switch (GameConsts.chosenMap)
-        {
-            case "map1":
-                this.currentMapArr = Map.arrMap1;
-                break;
-
-            case "map2":
-                this.currentMapArr = Map.arrMap2;
-                break;
-        }
+        if(GameConsts.chosenMap == "map1") this.currentMapArr = Map.arrMap1;
+        if (GameConsts.chosenMap == "map2") this.currentMapArr = Map.arrMap2;
     }
 
     function setFinishPoint()
@@ -48,7 +41,6 @@ var Map = (function()
         }
 
         this.finishPoint.x =  maxX;
-        console.log(this.finishPoint.x)
     }
 
     Map.updateMap = function(camera, layer, mapObjs, mapSprites) {
@@ -92,28 +84,28 @@ var Map = (function()
             });
         }
 
-        for (var i = 0; i < Map.arrMap1.length; i++) {
-            for (var j = 0; j < Map.arrMap1[i].length; j++) {
+        for (var i = 0; i < this.currentMapArr.length; i++) {
+            for (var j = 0; j < this.currentMapArr[i].length; j++) {
                 var tileSpriteToAdd = null,
                     potionSpriteToAdd = null;
                     
-                if (Map.arrMap1[i][j] == 1) {
+                if (this.currentMapArr[i][j] == 1) {
                     tileSpriteToAdd = renderer.addSprite(GameConsts.grassTilePath, j * this.tileW, i * this.tileH, this.tileW, this.tileH);
                     pushIntoMapTilesObjs.call(this, j * this.tileW, i * this.tileH, this.tileW, this.tileH, "grass");
                 }
-                else if (Map.arrMap1[i][j] == 2) {
+                else if (this.currentMapArr[i][j] == 2) {
                     tileSpriteToAdd = renderer.addSprite(GameConsts.brickTilePath, j * this.tileW, this.tileH, this.tileW, this.tileH);
                     pushIntoMapTilesObjs.call(this, j * this.tileW, i * this.tileH, this.tileW, this.tileH, "brick");
                 }
-                else if (Map.arrMap1[i][j] == 3) {
+                else if (this.currentMapArr[i][j] == 3) {
                     tileSpriteToAdd = renderer.addSprite(GameConsts.waterTilePath, j * this.tileW, this.tileH, this.tileW, this.tileH);
                     pushIntoMapTilesObjs.call(this, j * this.tileW, i * this.tileH, this.tileW, this.tileH, "water");
                 }
-                else if(Map.arrMap1[i][j] == 'v') {
+                else if(this.currentMapArr[i][j] == 'v') {
                     potionSpriteToAdd = renderer.addSprite(GameConsts.velocityPotion, j * this.potionW, this.potionH, this.potionW, this.potionH);
                     pushIntoMapPotionObjs.call(this, (j * this.potionW) * 2, (i * this.potionH) * 2, this.potionW, this.potionW, "velocity");
                 }
-                else if(Map.arrMap1[i][j] == 's') {
+                else if(this.currentMapArr[i][j] == 's') {
                     potionSpriteToAdd = renderer.addSprite(GameConsts.slowerEnemiesPotion, j * this.potionW, this.potionH, this.potionW, this.potionH);
                     pushIntoMapPotionObjs.call(this, (j * this.potionW) * 2, (i * this.potionH) * 2, this.potionW, this.potionW, "velocity");
                 }
@@ -121,13 +113,9 @@ var Map = (function()
                 if (potionSpriteToAdd !== null) this.mapPotionsSprites.push(potionSpriteToAdd);
             }
         }
-        //console.log(this.mapTilesSprites);
         renderer.addLayer("earthLayer", GameScreen.stage, this.mapTilesSprites, GameScreen.layers);
         renderer.addLayer("potionsLayer", GameScreen.stage, this.mapPotionsSprites, GameScreen.layers);
-
-        setCurrentMapArr.call(this);
         setFinishPoint.call(this);
-
     };
 
     Map.arrMap1 = [
@@ -135,9 +123,9 @@ var Map = (function()
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 'v', 0, 0, 2, 2, 2, 0, 0, 2, 0, 'v', 2, 0, 0, 0, 0, 0, 0, 0, 's', 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0],
-        [1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ];
 
     Map.arrMap2 = [
@@ -146,9 +134,10 @@ var Map = (function()
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 2, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        [0, 0, 0, 0, 0, 3, 3, 0, 0, 2, 0, 0, 3, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
     ];
 
