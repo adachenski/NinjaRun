@@ -64,6 +64,11 @@ var NPC = (function(parent)
     {
         parent.freeze.call(this);
     }
+    
+    NPC.setBack = function()
+    {
+        parent.setBack.call(this);
+    }
 
     NPC.render = function(ctx)
     {

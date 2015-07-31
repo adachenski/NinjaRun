@@ -115,6 +115,11 @@ var Player = (function (parent) {
     {
         parent.freeze.call(this);
     }
+    
+    Player.setBack = function()
+    {
+        parent.setBack.call(this);
+    }
 
     return Player;
 })(Character);

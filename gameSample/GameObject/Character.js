@@ -85,6 +85,11 @@ var Character = (function (parent) {
     {
         this.runVel = 0;
     }
+    
+    Character.setBack = function()
+    {
+        this.runVel = -4;
+    }
 
     Character.collideWith = function(obj2)
     {

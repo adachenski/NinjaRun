@@ -183,6 +183,16 @@ var GameScreen = (function(parent)
                                char.freeze();
                            } 
                         });
+                        break;
+                     case 'setBackPotion':
+                        gameMap.mapPotionsObjs.splice(i, 1);
+                        gameMap.mapPotionsSprites.splice(i,1);
+                        characters.forEach(function(char){
+                           if(character != char){
+                               char.setBack();
+                           } 
+                        });
+                        break;
                 }
                 break;
             }
