@@ -173,12 +173,12 @@ var GameScreen = (function(parent)
         } 
         if (ifWin(donchoNPC))
         {
-           ScreenManager.changeToScreen(LoseScreen); 
+           ScreenManager.changeToScreen(WinScreen); 
            announcer.announceWinner(donchoNPC.name);
         } 
         if (ifWin(ivoNPC))
         {
-            ScreenManager.changeToScreen(LoseScreen);
+            ScreenManager.changeToScreen(WinScreen);
             announcer.announceWinner(ivoNPC.name);
         } 
     }
