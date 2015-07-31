@@ -11,6 +11,11 @@ var GameConsts = {
     velocityPotion: "SpriteSheets/velocityPotion.png",
     slowerEnemiesPotion: "SpriteSheets/slowerEnemiesPotion.png",
 
-    chosenMap: ""
+    chosenMap: "",
+
+    jumpStep: 10,
+    maxJumpVel: 70,
+    accelerationStep: 0.2,
+    gravity: 10
 
 };

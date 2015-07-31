@@ -10,7 +10,7 @@ var Character = (function (parent) {
     {
         parent.init.call(this, x, y, w, h);
         this.hasJumped = false;
-        this.grounded = true;
+        this.grounded = false;
         this.isRunning = false;
         this.startJumping = false;
         
@@ -23,7 +23,7 @@ var Character = (function (parent) {
 
     Character.gravity = function()
     {
-        this.y += 10;
+        this.y += GameConsts.gravity;
     };
 
     Character.jump = function()
@@ -32,9 +32,9 @@ var Character = (function (parent) {
 
         if(this.hasJumped == true && this.grounded == false)
         {
-            this.jumpVel -= 10;
+            this.jumpVel -= GameConsts.jumpStep;
 
-            if(this.jumpVel <= -70) {
+            if(this.jumpVel <= -GameConsts.maxJumpVel) {
                 this.hasJumped = false;
             }
         }
@@ -42,18 +42,14 @@ var Character = (function (parent) {
         if(this.hasJumped == false && this.grounded == false) {
             this.jumpVel = 0;
         }
-        if(this.jumpVel > 20) {
-            this.jumpVel = 0;
-            //this.grounded = true;
-        }
-      //  if(this.grounded == true) this.jumpSpeed = 0;
+
     };
     
     Character.accelerate = function()
     {
         if(this.isRunning) {
             if(this.runVel <= this.maxRunVel) {
-                this.runVel += 0.2;
+                this.runVel += GameConsts.accelerationStep;
             }
         } else this.runVel = GameConsts.runVel;
     }

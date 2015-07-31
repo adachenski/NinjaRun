@@ -101,12 +101,6 @@ var GameScreen = (function(parent)
             ivoNPC.collisionDirection += (collisionE.ifCollidingWithTile(ivoNPC, gameMap.mapTilesObjs[i]));
             donchoNPC.collisionDirection += (collisionE.ifCollidingWithTile(donchoNPC, gameMap.mapTilesObjs[i]));
         }
-
-        //test code
-        // if (tryObj.x > camera.viewX && tryObj.x < camera.viewX + camera.viewW) {
-        //     trySprite.setX(700 - camera.viewX);
-        // }
-        // else trySprite.setX(tryObj.x);
     }
 
     function startSpriteAnims() {
