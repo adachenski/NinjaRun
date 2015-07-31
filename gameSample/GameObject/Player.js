@@ -52,12 +52,12 @@ var Player = (function (parent) {
         function animateRight() {
             this.x += this.runVel;
         }
-        function animateDown() {
-            //Player.y += velocityY;
-        }
-        function animateUp() {
-            //Player.y -= velocityY;
-        }
+        //function animateDown() {
+        //    //Player.y += velocityY;
+        //}
+        //function animateUp() {
+        //    //Player.y -= velocityY;
+        //}
         function animateJump() {
 
         }

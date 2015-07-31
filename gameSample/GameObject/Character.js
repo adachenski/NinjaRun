@@ -42,7 +42,6 @@ var Character = (function (parent) {
         if(this.hasJumped == false && this.grounded == false) {
             this.jumpVel = 0;
         }
-
     };
     
     Character.accelerate = function()
@@ -52,7 +51,7 @@ var Character = (function (parent) {
                 this.runVel += GameConsts.accelerationStep;
             }
         } else this.runVel = GameConsts.runVel;
-    }
+    };
 
     return Character;
 })(GameObject);
