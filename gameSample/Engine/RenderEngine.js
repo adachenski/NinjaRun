@@ -59,7 +59,7 @@ var RenderEngine = (function () {
             x: x,
             y: y,
             image: imgObj,
-            animation: 'idle',
+            animation: 'walkRight',
             animations: GameAnimObjs.playerAnims,
             frameRate: 11,
             index: 0

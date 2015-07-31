@@ -13,7 +13,8 @@ var Character = (function (parent) {
         this.grounded = true;
         this.isRunning = false;
         this.startJumping = false;
-        
+        this.direction = 'right';
+
         this.accelerationSpeed = GameConsts.accelerationSpeed;
         this.slowSpeed = GameConsts.slowSpeed;
         this.runVel = GameConsts.runVel;

@@ -4,14 +4,13 @@ var GameScreen = (function(parent)
         player,
         ivoNPC, donchoNPC, npcWinCounter,
         renderer,
-        monsterSprite, mapSprite, ivoSprite, donchoSprite,
+        playerSprite, mapSprite, ivoSprite, donchoSprite,
         gameMap,
         camera,
-        trySprite,
-        tryObj = {x: 700, y: 400, w:50, h: 50},
         collisionE,
         characters = [],
-        announcer;
+        announcer,
+        prevDir;
         
     GameScreen.loadGraphics = function() {
         //console.log('loading graphics of the GameScreen');
@@ -48,7 +47,6 @@ var GameScreen = (function(parent)
         camera.follow(player, GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
 
         startSpriteAnims();
-        //loadMap("SpriteSheets/grass.png");
 
         return this;
     };
@@ -56,6 +54,7 @@ var GameScreen = (function(parent)
     GameScreen.update = function()
     {
         handlePotionsCollision();
+        prevDir = player.direction;
         player.update();
         gameMap.updateMap(camera, "earthLayer", gameMap.mapTilesObjs, gameMap.mapTilesSprites);
         gameMap.updateMap(camera, "potionsLayer", gameMap.mapPotionsObjs, gameMap.mapPotionsSprites);
@@ -64,20 +63,16 @@ var GameScreen = (function(parent)
         camera.update();
         
         mapSprite.setX(-camera.viewX);
-        //mapSprite.setY(-camera.viewY);
 
         handlePlayerGroundColl();
         
         updateNPCSprite();
 
-        winCheck();
+        if(prevDir !== player.direction) handlePlayerAnim();
 
         renderer.render(this);
 
-        //renderer.animate(player.x, player.y, layerToUpdate);
-        //console.log('=======', player.x, player.y)
-        //mapSprite.crop({x: camera.viewX, y: camera.viewY, width: camera.viewW, height: camera.viewH});
-
+        winCheck();
         parent.update.call(this);
     };
     
@@ -123,31 +118,49 @@ var GameScreen = (function(parent)
     }
 
     function startSpriteAnims() {
-        monsterSprite.start();
+        playerSprite.start();
+    }
+
+    function handlePlayerAnim()
+    {
+        console.log(player.direction);
+        switch (player.direction)
+        {
+            case "left":
+                playerSprite.setAnimation('walkLeft');
+
+                break;
+            case "right":
+                playerSprite.setAnimation('walkRight');
+                console.log(playerSprite)
+                break;
+            case "idle":
+                playerSprite.setAnimation('idle');
+                break;
+        }
     }
 
     function createSprites() {
         ivoSprite = renderer.addSprite("SpriteSheets/ivaylo_kenov.png", ivoNPC.x, ivoNPC.y, ivoNPC.w, ivoNPC.h);
         donchoSprite = renderer.addSprite("SpriteSheets/doncho_minkov.png", donchoNPC.x, donchoNPC.y, donchoNPC.w, donchoNPC.h);
-        monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", player.x, player.y);
+       // monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", player.x, player.y);
         mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, gameMap.mapRect.width, gameMap.mapRect.height);
-        monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
+        playerSprite = renderer.createBlobSprite("SpriteSheets/ninjaSprite.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
     }
 
     function createLayers() {
         renderer.addLayer("mapLayer", GameScreen.stage, [mapSprite], GameScreen.layers);
-        renderer.addLayer("monsterLayer", GameScreen.stage, [monsterSprite], GameScreen.layers);
+        renderer.addLayer("playerLayer", GameScreen.stage, [playerSprite], GameScreen.layers);
         renderer.addLayer("NPCLayer", GameScreen.stage, [ivoSprite, donchoSprite], GameScreen.layers);
     }
 
     function ifWithinViewport(obj) {
-        /*
-        return (obj.x + obj.w > camera.viewX &&
-        obj.x < camera.viewX + camera.viewW &&
-        obj.y + obj.h > camera.viewY &&
-        obj.y < camera.viewY + camera.viewH)
-        */
-        
+
+        //return (obj.x + obj.w > camera.viewX &&
+        //obj.x < camera.viewX + camera.viewW &&
+        //obj.y + obj.h > camera.viewY &&
+        //obj.y < camera.viewY + camera.viewH)
+
         return true;
     }
 

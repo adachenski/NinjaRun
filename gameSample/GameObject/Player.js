@@ -37,6 +37,7 @@ var Player = (function (parent) {
     };
 
     Player.update = function () {
+        this.direction = 'idle';
          window.addEventListener('keyup', function (e) {
             Player.Key.onKeyUp(e);
         }, false);
@@ -47,9 +48,11 @@ var Player = (function (parent) {
 
 
         function animateLeft() {
+            this.direction = 'left';
             this.x -= this.runVel;
         }
         function animateRight() {
+            this.direction = 'right';
             this.x += this.runVel;
         }
         //function animateDown() {
@@ -99,27 +102,27 @@ var Player = (function (parent) {
     Player.slow = function()
     {
         parent.slow.call(this);
-    }
+    };
     
     Player.collideWith = function(obj2)
     {
         parent.collideWith.call(this, obj2);    
-    }
-    
+    };
+
     Player.speedUp = function()
     {
         parent.speedUp.call(this);
-    }
+    };
     
     Player.freeze = function()
     {
         parent.freeze.call(this);
-    }
+    };
     
     Player.setBack = function()
     {
         parent.setBack.call(this);
-    }
+    };
 
     return Player;
 })(Character);
