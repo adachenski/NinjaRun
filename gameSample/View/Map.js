@@ -53,7 +53,7 @@ var Map = (function()
         for (var i = 0; i < mapObjs.length; i++) {
             if (mapObjs[i].x + mapObjs[i].w >= camera.viewX &&
                 mapObjs[i].x < camera.viewX + camera.viewW &&
-                mapObjs[i].y > camera.viewY &&
+                mapObjs[i].y + mapObjs[i].h > camera.viewY &&
                 mapObjs[i].y < camera.viewY + camera.viewW)
             {
                 mapSprites[i].setX(mapObjs[i].x - camera.viewX);

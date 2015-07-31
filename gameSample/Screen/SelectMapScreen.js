@@ -8,7 +8,8 @@ var SelectMapScreen = (function (parent) {
         renderE,
         clickCounter = 0,
         map1Sprite,
-        map2Sprite;
+        map2Sprite,
+		backgroundNature;
 
     SelectMapScreen.init = function () {
         parent.init.call(this);
@@ -36,11 +37,12 @@ var SelectMapScreen = (function (parent) {
 
 
     SelectMapScreen.loadGraphics = function () {
-        map1Sprite = renderE.addSprite("SpriteSheets/choosableMap1.png", 100, 200, 150, 150);
-        map2Sprite = renderE.addSprite("SpriteSheets/choosableMap2.png", 300, 200, 150, 150);
+        map1Sprite = renderE.addSprite("SpriteSheets/map1.png", 100, 200, 200, 200);
+        map2Sprite = renderE.addSprite("SpriteSheets/map2.png", 350, 200, 200, 200);
 
+        backgroundNature = renderE.addSprite("SpriteSheets/background1.jpg", 0, 0, 700, 480);
 
-        renderE.addLayer("selectMapLayer", this.stage, [map1Sprite, map2Sprite], this.layers);
+        renderE.addLayer("selectMapLayer", this.stage, [backgroundNature,map1Sprite, map2Sprite], this.layers);
     };
 
     return SelectMapScreen;
