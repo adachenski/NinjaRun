@@ -1,8 +1,8 @@
 
 var GameConsts = {
     jumpVel: 5,
-    runVel: 5,
-    maxRunVel: 10,
+    runVel: 4,
+    maxRunVel: 7,
     slowedRunVel: 0.3,
     speedRunVel: 15,
     accelerationSpeed: 0.1,

@@ -153,9 +153,21 @@ var GameScreen = (function(parent)
 
     function winCheck()
     {
-        if (ifWin(player)) ScreenManager.changeToScreen(WinScreen);
-        if (ifWin(donchoNPC)) ScreenManager.changeToScreen(LoseScreen);
-        if (ifWin(ivoNPC)) ScreenManager.changeToScreen(LoseScreen);
+        if (ifWin(player))
+        {
+            ScreenManager.changeToScreen(WinScreen);
+            announcer.announceWinner(player.name);
+        } 
+        if (ifWin(donchoNPC))
+        {
+           ScreenManager.changeToScreen(LoseScreen); 
+           announcer.announceWinner(donchoNPC.name);
+        } 
+        if (ifWin(ivoNPC))
+        {
+            ScreenManager.changeToScreen(LoseScreen);
+            announcer.announceWinner(ivoNPC.name);
+        } 
     }
 
     function ifWin(obj) {
