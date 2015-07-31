@@ -36,7 +36,7 @@ var GameScreen = (function(parent)
         characters.push(ivoNPC);
         characters.push(donchoNPC);
         
-        gameMap = Object.create(Map).init(0, 0, 3000, 2000);
+        gameMap = Object.create(Map).init(0, 0, 12000, 500);
         camera = Object.create(Camera).init(0, 0, /*viewPort W and H*/ 700, 480, gameMap.mapRect.width, gameMap.mapRect.height);
         collisionE = Object.create(Collision).init();
 
@@ -64,7 +64,7 @@ var GameScreen = (function(parent)
         camera.update();
         
         mapSprite.setX(-camera.viewX);
-        mapSprite.setY(-camera.viewY);
+        //mapSprite.setY(-camera.viewY);
 
         handlePlayerGroundColl();
         
@@ -130,7 +130,7 @@ var GameScreen = (function(parent)
         ivoSprite = renderer.addSprite("SpriteSheets/ivaylo_kenov.png", ivoNPC.x, ivoNPC.y, ivoNPC.w, ivoNPC.h);
         donchoSprite = renderer.addSprite("SpriteSheets/doncho_minkov.png", donchoNPC.x, donchoNPC.y, donchoNPC.w, donchoNPC.h);
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", player.x, player.y);
-        mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, gameMap.mapRect.width, gameMap.mapRect.h);
+        mapSprite = renderer.addSprite("SpriteSheets/map.png", 0, 0, gameMap.mapRect.width, gameMap.mapRect.height);
         monsterSprite = renderer.createBlobSprite("SpriteSheets/normal_walk.png", GameScreen.stage.getWidth()/2, GameScreen.stage.getHeight()/2);
     }
 
