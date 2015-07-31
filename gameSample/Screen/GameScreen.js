@@ -10,7 +10,8 @@ var GameScreen = (function(parent)
         trySprite,
         tryObj = {x: 700, y: 400, w:50, h: 50},
         collisionE,
-        characters = [];
+        characters = [],
+        announcer;
         
     GameScreen.loadGraphics = function() {
         //console.log('loading graphics of the GameScreen');
@@ -25,6 +26,10 @@ var GameScreen = (function(parent)
         donchoNPC = Object.create(NPC).init(140, 380, 90, 100, "Doncho");
         
         renderer = Object.create(RenderEngine).init();
+        announcer = Object.create(PotionsAnnouncer);
+        announcer.clear();
+        announcer.initialize();
+        
         npcWinCounter = 0;
         
         characters.push(player);
@@ -167,13 +172,13 @@ var GameScreen = (function(parent)
                         gameMap.mapPotionsObjs.splice(i, 1);
                         gameMap.mapPotionsSprites.splice(i,1);
                         character.speedUp();
-                        console.log(character.name + ' used speed')
+                        announcer.announce(character.name + ' used speed');
                         break;
                     case 'velocitySlowEnemies':
                         gameMap.mapPotionsObjs.splice(i, 1);
                         gameMap.mapPotionsSprites.splice(i,1);
                         character.slow();
-                        console.log(character.name + ' slowed himself')
+                        announcer.announce(character.name + ' used slow');
                         break;
                     case 'freezePotion':
                         gameMap.mapPotionsObjs.splice(i, 1);
@@ -183,7 +188,7 @@ var GameScreen = (function(parent)
                                char.freeze();
                            } 
                         });
-                        console.log(character.name + ' used freeze')
+                        announcer.announce(character.name + ' used freeze');
                         break;
                      case 'setBackPotion':
                         gameMap.mapPotionsObjs.splice(i, 1);
@@ -193,7 +198,7 @@ var GameScreen = (function(parent)
                                char.setBack();
                            } 
                         });
-                        console.log(character.name + ' used pull')
+                        announcer.announce(character.name + ' used pull');
                         break;
                 }
                 break;

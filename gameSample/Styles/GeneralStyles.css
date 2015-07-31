@@ -17,3 +17,23 @@ canvas {
     width: 700px;
     height: 480px
 }
+
+#announcer {
+    width: 700px;
+    text-align: center;
+}
+
+.playerName {
+    color: brown;
+    font-size: 25px;
+}
+
+.playerSpecialty {
+    color: blueviolet;
+    font-size: 30px;
+}
+
+#announcerText {
+    color: lawngreen;
+    font-size: 35px;
+}
