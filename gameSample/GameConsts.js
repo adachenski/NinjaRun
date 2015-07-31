@@ -12,6 +12,7 @@ var GameConsts = {
     waterTilePath: "SpriteSheets/waterTile.png",
     brickTilePath: "SpriteSheets/brickTile.png",
     dirtTilePath: "SpriteSheets/dirtTile.png",
+    finishTile: "SpriteSheets/finishTile.png",
     
     velocityPotion: "SpriteSheets/velocityPotion.png",
     slowerEnemiesPotion: "SpriteSheets/slowerEnemiesPotion.png",
