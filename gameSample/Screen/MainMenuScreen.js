@@ -175,8 +175,6 @@ var MainMenuScreen = (function (parent) {
         });
 
         addPlayLear.on('click', function () {
-            var video = document.getElementById('the-video');
-            video.src="";
             ScreenManager.changeToScreen(SelectMapScreen);
         });
         renderE.render(this);
