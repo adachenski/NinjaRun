@@ -62,7 +62,7 @@ var ScreenManager = (function () {
     ScreenManager.changeToScreen = function (Screen) {
         currentScreen = Screen;
         currentScreen.init();
-
+        currentScreen.loadGraphics();
     };
 
     function clearCanvas(ctx) {

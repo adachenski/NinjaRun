@@ -9,5 +9,8 @@ var GameConsts = {
     brickTilePath: "SpriteSheets/brickTile.jpg",
     
     velocityPotion: "SpriteSheets/velocityPotion.png",
-    slowerEnemiesPotion: "SpriteSheets/slowerEnemiesPotion.png"
-}
+    slowerEnemiesPotion: "SpriteSheets/slowerEnemiesPotion.png",
+
+    chosenMap: ""
+
+};

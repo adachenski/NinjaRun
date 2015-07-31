@@ -17,8 +17,6 @@ var Collision = (function() {
         if(this.ifColliding(obj1, obj2))
         {
             obj1.y = obj2.y - obj1.h;
-          //  obj1.grounded = true;
-
         }
     };
 

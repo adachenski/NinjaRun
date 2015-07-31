@@ -19,11 +19,37 @@ var Map = (function()
         this.mapPotionsObjs = [];
 
         this.currentMapArr = [];
+        this.finishPoint = {};
 
-        this.endPoint = {x: 2000, y:300, w: 100};
 
         return this;
     };
+
+    function setCurrentMapArr()
+    {
+        switch (GameConsts.chosenMap)
+        {
+            case "map1":
+                this.currentMapArr = Map.arrMap1;
+                break;
+
+            case "map2":
+                this.currentMapArr = Map.arrMap2;
+                break;
+        }
+    }
+
+    function setFinishPoint()
+    {
+        var maxX = 0;
+        for(var i = 0, len = this.mapTilesObjs.length; i < len; i++)
+        {
+            if(maxX < this.mapTilesObjs[i].x) maxX = this.mapTilesObjs[i].x;
+        }
+
+        this.finishPoint.x =  maxX;
+        console.log(this.finishPoint.x)
+    }
 
     Map.updateMap = function(camera, layer, mapObjs, mapSprites) {
         GameScreen.layers[layer].removeChildren();
@@ -43,7 +69,7 @@ var Map = (function()
                 mapSprites[i].setX(mapObjs[i].x);
             }
         }
-    }
+    };
 
     Map.loadMap = function(renderer) {
         function pushIntoMapTilesObjs(x, y, w, h, type) {
@@ -98,7 +124,11 @@ var Map = (function()
         //console.log(this.mapTilesSprites);
         renderer.addLayer("earthLayer", GameScreen.stage, this.mapTilesSprites, GameScreen.layers);
         renderer.addLayer("potionsLayer", GameScreen.stage, this.mapPotionsSprites, GameScreen.layers);
-    }
+
+        setCurrentMapArr.call(this);
+        setFinishPoint.call(this);
+
+    };
 
     Map.arrMap1 = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -111,6 +141,14 @@ var Map = (function()
     ];
 
     Map.arrMap2 = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 2, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
     ];
 

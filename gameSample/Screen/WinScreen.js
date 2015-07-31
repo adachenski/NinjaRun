@@ -1,17 +1,16 @@
 /**
  * Created by Nick on 29/7/2015.
  */
-
-
-
 var WinScreen = (function (parent) {
     var WinScreen = {},
-        renderE = Object.create(RenderEngine).init(),
-        clickCounter = 0;
-
+        renderE,
+        clickCounter = 0,
+        newGameButtonSprite;
 
     WinScreen.init = function () {
         parent.init.call(this);
+
+        renderE = Object.create(RenderEngine).init();
 
         this.loadGraphics();
 
@@ -31,8 +30,9 @@ var WinScreen = (function (parent) {
 
 
     WinScreen.loadGraphics = function () {
-        var newGameButton = renderE.addSprite("SpriteSheets/newGameButton.png", 200, 200, 200, 150);
-        renderE.addLayer("newGameButton", this.stage, [newGameButton], this.layers);
+        newGameButtonSprite = renderE.addSprite("SpriteSheets/newGameButton.png", 200, 200, 200, 150);
+
+        renderE.addLayer("newGameButton", this.stage, [newGameButtonSprite], this.layers);
     };
 
     return WinScreen;

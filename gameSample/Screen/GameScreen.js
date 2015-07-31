@@ -63,7 +63,7 @@ var GameScreen = (function(parent)
         handlePlayerGroundColl();
         updateNPCSprite();
 
-        checkIfWin(player);
+        winCheck();
 
         renderer.render(this);
 
@@ -138,11 +138,15 @@ var GameScreen = (function(parent)
         obj.y < camera.viewY + camera.viewH)
     }
 
-    function checkIfWin(obj) {
-        console.log('...')
-        if(obj.x > gameMap.endPoint.x) {
-            ScreenManager.changeToScreen(WinScreen);
-        }
+    function winCheck()
+    {
+        if (ifWin(player)) ScreenManager.changeToScreen(WinScreen);
+        if (ifWin(donchoNPC)) ScreenManager.changeToScreen(LoseScreen);
+        if (ifWin(ivoNPC)) ScreenManager.changeToScreen(LoseScreen);
+    }
+
+    function ifWin(obj) {
+        return (obj.x >= gameMap.finishPoint.x)
     }
 
     return GameScreen;

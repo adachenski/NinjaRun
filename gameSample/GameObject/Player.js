@@ -98,6 +98,8 @@ var Player = (function (parent) {
         {
             parent.gravity.call(this);
         }
+
+        parent.accelerate.call(this);
     };
 
 

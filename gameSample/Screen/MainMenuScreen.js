@@ -1,7 +1,3 @@
-/**
- * Created by Nick on 22/7/2015.
- */
-
 var MainMenuScreen = (function (parent) {
     var MainMenuScreen = {},
         renderE = Object.create(RenderEngine).init(),
@@ -56,7 +52,7 @@ var MainMenuScreen = (function (parent) {
                 fontSize: 30,
                 stroke: 'green',
                 strokeWidth: 1.3,
-                fontStyle:"100",
+                fontStyle: "100",
                 fontFamily: 'Kristen ITC',
                 fill: 'White',
                 shadowColor: 'black',
@@ -178,7 +174,7 @@ var MainMenuScreen = (function (parent) {
         });
 
         addPlayLear.on('click', function () {
-            ScreenManager.changeToScreen(GameScreen);
+            ScreenManager.changeToScreen(SelectMapScreen);
         });
         renderE.render(this);
         // renderE.addLayer("startButtonLayer", this.stage, [startButtSprite], this.layers);
