@@ -15,11 +15,11 @@ canvas {
 #screen-container {
     border: 1px solid black;
     width: 700px;
-    height: 480px
+    height: 480px;
+    margin: auto;
 }
 
 #announcer {
-    width: 700px;
     text-align: center;
 }
 

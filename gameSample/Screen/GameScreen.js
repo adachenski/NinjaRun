@@ -21,7 +21,7 @@ var GameScreen = (function(parent)
     {
         parent.init.call(this);
         
-        player = Object.create(Player).init(350, 100, 60, 80, "You");
+        player = Object.create(Player).init(350, 300, 60, 80, "You");
         ivoNPC = Object.create(NPC).init(210, 300, 90, 100, "Ivo");
         donchoNPC = Object.create(NPC).init(140, 380, 90, 100, "Doncho");
         
