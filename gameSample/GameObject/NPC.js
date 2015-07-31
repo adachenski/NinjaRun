@@ -11,6 +11,7 @@ var NPC = (function(parent)
         parent.init.call(this, x, y, w, h, name);
         this.isRunning = true;
         this.collisionDirection = '';
+        this.accelerationSpeed = 0.1;
            
         return this;
     };

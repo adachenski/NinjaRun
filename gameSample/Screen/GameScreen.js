@@ -109,6 +109,7 @@ var GameScreen = (function(parent)
             ivoNPC.collisionDirection += (collisionE.checkCollide(ivoNPC, gameMap.mapTilesObjs[i]));
             donchoNPC.collisionDirection += (collisionE.checkCollide(donchoNPC, gameMap.mapTilesObjs[i]));
         }
+        console.log(player.runVel);
     }
     
     function handlePotionsCollision(){

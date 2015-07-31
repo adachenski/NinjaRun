@@ -4,8 +4,8 @@ var GameConsts = {
     runVel: 4,
     maxRunVel: 7,
     slowedRunVel: 0.3,
-    speedRunVel: 15,
-    accelerationSpeed: 0.1,
+    speedRunVel: 9,
+    accelerationSpeed: 0.2,
     slowSpeed: 0.2,
 
     grassTilePath: "SpriteSheets/grassTile.png",

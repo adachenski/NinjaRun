@@ -26,18 +26,19 @@ var Player = (function (parent) {
             },
 
             onKeyUp: function (e) {
-                Player.isRunning = false;
                 delete this._pressed[e.keyCode];
             }
         };
 
         this.collisionDirection = '';
+        this.isRunning = false;
 
         return this;
     };
 
     Player.update = function () {
         this.direction = 'idle';
+        this.isRunning = false;
          window.addEventListener('keyup', function (e) {
             Player.Key.onKeyUp(e);
         }, false);
@@ -66,7 +67,6 @@ var Player = (function (parent) {
         }
 
         if (this.Key.isDown(this.Key.UP) && this.collisionDirection.indexOf('top') == -1) {
-            animateUp()
         }
         if (this.Key.isDown(this.Key.LEFT) && this.collisionDirection.indexOf('left') == -1) {
             this.isRunning = true;

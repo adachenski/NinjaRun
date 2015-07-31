@@ -63,12 +63,7 @@ var Character = (function (parent) {
         } 
         else 
         {
-            this.runVel = GameConsts.runVel;
-        }
-        
-        if(this.runVel > this.maxRunVel)
-        {
-            this.runVel -= this.slowSpeed;
+            this.runVel = 2;
         }
     }
     
