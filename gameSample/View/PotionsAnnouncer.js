@@ -10,7 +10,8 @@ var PotionsAnnouncer = (function(){
 			
 		announcer.innerHTML = '<span id="announcerText">Announcer:</span><br><br>' +
 							  '<span class="playerName">' + name + '</span>' + ' used ' +
-							  '<span class="playerSpecialty">' + specialty + '</span>';
+							  '<span class="playerSpecialty">' + specialty + '</span> <br>' +
+							  '<span class="veryEffective"> And it\'s very effective! </span>';
 	}
 	
 	PotionsAnnouncer.initialize = function()
