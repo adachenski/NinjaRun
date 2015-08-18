@@ -2,9 +2,12 @@ canvas {
     display: inline-block;
 }
 #the-video{
+    
     position:fixed ;
-    top: -20%;
-    left: 0%;
+    top: -0.8%;
+    left: 31.8%;
+    width:700px;
+    height:480px;
     z-index: -100;
     background-size: cover;
     transition: 2s opacity;
@@ -16,7 +19,10 @@ canvas {
     border: 1px solid black;
     width: 700px;
     height: 480px;
-    margin: auto;
+    position:fixed ;
+    top: -0.8%;
+    left: 31.8%;
+
 }
 
 #announcer {

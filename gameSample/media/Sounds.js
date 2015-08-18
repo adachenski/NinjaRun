@@ -37,5 +37,8 @@ function createsoundbite(sound){
 
 //Initialize two sound clips with 1 fallback file each:
 
-var jumpSound=createsoundbite("media/Jumping.ogg", "media/Jumping.mp3")
-var clicksound=createsoundbite("media/Button-Sound.mp3", "media/Button-Sound.mp3")
+var jumpSound = createsoundbite("media/Jumping.ogg", "media/Jumping.mp3");
+var clicksound = createsoundbite("media/Button-Sound.mp3", "media/Button-Sound.mp3");
+var backgroundMusic = createsoundbite("media/Technology.mp3", "media/Technology.mp3");
+var mapTwoMusic = createsoundbite("media/MoveFast.mp3", "media/MoveFast.mp3");
+var mainMenuMusic = createsoundbite("media/SpaceOdyssey.mp3", "media/SpaceOdyssey.mp3");

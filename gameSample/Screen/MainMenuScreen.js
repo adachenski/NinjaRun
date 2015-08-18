@@ -22,8 +22,8 @@ var MainMenuScreen = (function (parent) {
 
         var stage = new Kinetic.Stage({
             container: 'screen-container',
-            width: 680,
-            height: 490
+            width: 700,
+            height: 480
         });
         var layer = new Kinetic.Layer(),
             addOptionLear = new Kinetic.Layer(),
@@ -33,7 +33,7 @@ var MainMenuScreen = (function (parent) {
             textPlay = new Kinetic.Text({
                 x: 50,
                 y: 230,
-                text: 'Play Game',
+                text: 'Just Play',
                 stroke: 'green',
                 strokeWidth: 1.3,
                 fontSize: 30,
@@ -48,7 +48,7 @@ var MainMenuScreen = (function (parent) {
             textOptions = new Kinetic.Text({
                 x: 50,
                 y: 280,
-                text: 'Options',
+                text: 'Developers',
                 fontSize: 30,
                 stroke: 'green',
                 strokeWidth: 1.3,
@@ -64,7 +64,7 @@ var MainMenuScreen = (function (parent) {
         imageObj.onload = function () {
             var yoda = new Kinetic.Image({
                 x: 300,
-                y: 290,
+                y: 280,
                 image: imageObj,
                 width: 150,
                 height: 200,
@@ -87,12 +87,12 @@ var MainMenuScreen = (function (parent) {
         setMouseEventIn(textOptions, 'mouseover', addOptionLear);
 
         var textTelerikAcademy = new Kinetic.Text({
-            x: 275,
-            y: 435,
-            text: 'Telerik      Academy \n 2015',
+            x: 210,
+            y: 400,
+            text: 'Telerik          Academy \n 2015',
             stroke: 'black',
             strokeWidth: 1.3,
-            fontSize: 27,
+            fontSize: 37,
             fontFamily: 'Arial Bold',
             fill: 'White',
             shadowColor: 'black',
@@ -105,9 +105,9 @@ var MainMenuScreen = (function (parent) {
 
         imageObj.src = 'SpriteSheets/BagroundNinja.png';
         var rect = new Kinetic.Rect({
-            x: 263,
-            y: 350,
-            width: 240,
+            x: 180,
+            y: 330,
+            width: 400,
             height: 150,
             fill: 'green',
             stroke: 'black',
@@ -120,7 +120,20 @@ var MainMenuScreen = (function (parent) {
             draggable: true
         });
 
-
+        var rectSecond = new Kinetic.Rect({
+            x: 0,
+            y: 0,
+            width: 710,
+            height: 50,
+            fill: 'green',           
+        });
+        var rectThird = new Kinetic.Rect({
+            x: 0,
+            y: 420,
+            width: 710,
+            height: 70,
+            fill: 'green',
+        });
         var textNinjaRun = new Kinetic.Text({
             x: stage.width() / 2,
             y: 105,
@@ -138,7 +151,8 @@ var MainMenuScreen = (function (parent) {
             draggable: true
         });
         textNinjaRun.offsetX(textNinjaRun.width() / 2);
-
+        layer.add(rectSecond);
+        layer.add(rectThird);
         layer.add(rect);
         layer.add(textTelerikAcademy);
         addPlayLear.add(textPlay);
@@ -171,10 +185,12 @@ var MainMenuScreen = (function (parent) {
 
 
         addOptionLear.on('click', function () {
-            alert('No Implemented Yet!!!');
+            alert('Developers TM:\n\nNikola Budinov \nStefan Iovchev\nTeodor Hanev \nAtanas Dachenski \nEmil Tishinov').background="#F00";
+
         });
 
         addPlayLear.on('click', function () {
+            mainMenuMusic.playclip();
             ScreenManager.changeToScreen(SelectMapScreen);
         });
         renderE.render(this);
